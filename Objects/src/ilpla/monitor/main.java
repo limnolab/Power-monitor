@@ -471,7 +471,7 @@ this.state = 10;
  //BA.debugLineNum = 66;BA.debugLine="ToastMessageShow(\"No permissions set\", False)";
 anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence("No permissions set"),anywheresoftware.b4a.keywords.Common.False);
  //BA.debugLineNum = 67;BA.debugLine="Log(\"No Permission: \" & Permission)";
-anywheresoftware.b4a.keywords.Common.LogImpl("5131082","No Permission: "+_permission,0);
+anywheresoftware.b4a.keywords.Common.LogImpl("4131082","No Permission: "+_permission,0);
  //BA.debugLineNum = 68;BA.debugLine="ExitApplication";
 anywheresoftware.b4a.keywords.Common.ExitApplication();
  if (true) break;
@@ -488,7 +488,7 @@ case 11:
 this.state = 12;
 ;
  //BA.debugLineNum = 72;BA.debugLine="Log(\"All permissions OK\")";
-anywheresoftware.b4a.keywords.Common.LogImpl("5131087","All permissions OK",0);
+anywheresoftware.b4a.keywords.Common.LogImpl("4131087","All permissions OK",0);
  if (true) break;
 ;
  //BA.debugLineNum = 74;BA.debugLine="If FirstTime Then";
@@ -689,10 +689,10 @@ _map1.Put((Object)("minDisconnect"),(Object)(mostCurrent._txtmindisconnect.getTe
 _map1.Put((Object)("minConnect"),(Object)(mostCurrent._txtminconnect.getText()));
  //BA.debugLineNum = 99;BA.debugLine="File.WriteMap(File.DirInternal, \"settings.txt\", M";
 anywheresoftware.b4a.keywords.Common.File.WriteMap(anywheresoftware.b4a.keywords.Common.File.getDirInternal(),"settings.txt",_map1);
- //BA.debugLineNum = 100;BA.debugLine="minConnect = txtMinConnect.Text";
-_minconnect = (int)(Double.parseDouble(mostCurrent._txtminconnect.getText()));
- //BA.debugLineNum = 101;BA.debugLine="minDisconnect = txtMinDisconnect.Text";
-_mindisconnect = (int)(Double.parseDouble(mostCurrent._txtmindisconnect.getText()));
+ //BA.debugLineNum = 100;BA.debugLine="minConnect = txtMinConnect.Text * 1000";
+_minconnect = (int) ((double)(Double.parseDouble(mostCurrent._txtminconnect.getText()))*1000);
+ //BA.debugLineNum = 101;BA.debugLine="minDisconnect = txtMinDisconnect.Text *1000";
+_mindisconnect = (int) ((double)(Double.parseDouble(mostCurrent._txtmindisconnect.getText()))*1000);
  //BA.debugLineNum = 102;BA.debugLine="telefonos = txtTelefonos.Text";
 _telefonos = mostCurrent._txttelefonos.getText();
  //BA.debugLineNum = 103;BA.debugLine="ToastMessageShow(\"Config saved!\", False)";
@@ -715,10 +715,10 @@ return "";
 }
 public static String  _cargarconfigtxt() throws Exception{
  //BA.debugLineNum = 105;BA.debugLine="Sub CargarConfigTxt 'Load config";
- //BA.debugLineNum = 106;BA.debugLine="txtMinConnect.Text = minConnect";
-mostCurrent._txtminconnect.setText(BA.ObjectToCharSequence(_minconnect));
- //BA.debugLineNum = 107;BA.debugLine="txtMinDisconnect.Text = minDisconnect";
-mostCurrent._txtmindisconnect.setText(BA.ObjectToCharSequence(_mindisconnect));
+ //BA.debugLineNum = 106;BA.debugLine="txtMinConnect.Text = minConnect / 1000";
+mostCurrent._txtminconnect.setText(BA.ObjectToCharSequence(_minconnect/(double)1000));
+ //BA.debugLineNum = 107;BA.debugLine="txtMinDisconnect.Text = minDisconnect / 1000";
+mostCurrent._txtmindisconnect.setText(BA.ObjectToCharSequence(_mindisconnect/(double)1000));
  //BA.debugLineNum = 108;BA.debugLine="txtTelefonos.Text = telefonos";
 mostCurrent._txttelefonos.setText(BA.ObjectToCharSequence(_telefonos));
  //BA.debugLineNum = 109;BA.debugLine="End Sub";
@@ -736,8 +736,8 @@ _hayenergia = anywheresoftware.b4a.keywords.Common.True;
 _cambiarcolor();
  //BA.debugLineNum = 155;BA.debugLine="If lblTimer.Text = \"0.0\" Or lblTimer.Text = \"\" Th";
 if ((mostCurrent._lbltimer.getText()).equals("0.0") || (mostCurrent._lbltimer.getText()).equals("")) { 
- //BA.debugLineNum = 157;BA.debugLine="DisplayTimer(minConnect)";
-_displaytimer(_minconnect);
+ //BA.debugLineNum = 157;BA.debugLine="DisplayTimer(minConnect / 1000)";
+_displaytimer((int) (_minconnect/(double)1000));
  //BA.debugLineNum = 158;BA.debugLine="timerConnect.Initialize(\"timerConnect\", minConne";
 _timerconnect.Initialize(processBA,"timerConnect",(long) (_minconnect));
  //BA.debugLineNum = 159;BA.debugLine="timerConnect.Enabled = True";
@@ -761,8 +761,8 @@ _hayenergia = anywheresoftware.b4a.keywords.Common.False;
 _cambiarcolor();
  //BA.debugLineNum = 124;BA.debugLine="If lblTimer.Text = \"0.0\" Or lblTimer.Text = \"\" Th";
 if ((mostCurrent._lbltimer.getText()).equals("0.0") || (mostCurrent._lbltimer.getText()).equals("")) { 
- //BA.debugLineNum = 126;BA.debugLine="DisplayTimer(minDisconnect)";
-_displaytimer(_mindisconnect);
+ //BA.debugLineNum = 126;BA.debugLine="DisplayTimer(minDisconnect / 1000)";
+_displaytimer((int) (_mindisconnect/(double)1000));
  //BA.debugLineNum = 127;BA.debugLine="timerDisconnect.Initialize(\"timerDisconnect\", mi";
 _timerdisconnect.Initialize(processBA,"timerDisconnect",(long) (_mindisconnect));
  //BA.debugLineNum = 128;BA.debugLine="timerDisconnect.Enabled = True";
@@ -776,8 +776,8 @@ return "";
 }
 public static String  _displaytimer(int _tiempototal) throws Exception{
  //BA.debugLineNum = 178;BA.debugLine="Sub DisplayTimer (tiempoTotal As Int) 'Display tim";
- //BA.debugLineNum = 179;BA.debugLine="lblTimer.Text = tiempoTotal / 1000";
-mostCurrent._lbltimer.setText(BA.ObjectToCharSequence(_tiempototal/(double)1000));
+ //BA.debugLineNum = 179;BA.debugLine="lblTimer.Text = tiempoTotal";
+mostCurrent._lbltimer.setText(BA.ObjectToCharSequence(_tiempototal));
  //BA.debugLineNum = 180;BA.debugLine="timerDisplay.Initialize(\"timerDisplay\", 1000)";
 _timerdisplay.Initialize(processBA,"timerDisplay",(long) (1000));
  //BA.debugLineNum = 181;BA.debugLine="timerDisplay.Enabled = True";

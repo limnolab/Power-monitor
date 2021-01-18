@@ -11,3 +11,6 @@ If the device gets unplugged, it will wait the milliseconds set in the config [W
 Then, when the power comes back, it will wait the milliseconds set in the config [Wait time - Power detected (ms)] before sending an SMS
 The settings are saved to an internal .txt file... because it's simple!
 Important: To change the settings, the monitor must be turned OFF
+
+
+Note: There is also a version of the APK in Spanish

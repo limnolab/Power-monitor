@@ -145,10 +145,10 @@ _map1 = new anywheresoftware.b4a.objects.collections.Map();
 _map1 = anywheresoftware.b4a.keywords.Common.File.ReadMap(anywheresoftware.b4a.keywords.Common.File.getDirInternal(),"settings.txt");
  //BA.debugLineNum = 34;BA.debugLine="Main.telefonos = Map1.Get(\"telefonos\")";
 mostCurrent._main._telefonos /*String*/  = BA.ObjectToString(_map1.Get((Object)("telefonos")));
- //BA.debugLineNum = 35;BA.debugLine="Main.minDisconnect = Map1.Get(\"minDisconnect\")";
-mostCurrent._main._mindisconnect /*int*/  = (int)(BA.ObjectToNumber(_map1.Get((Object)("minDisconnect"))));
- //BA.debugLineNum = 36;BA.debugLine="Main.minConnect = Map1.Get(\"minConnect\")";
-mostCurrent._main._minconnect /*int*/  = (int)(BA.ObjectToNumber(_map1.Get((Object)("minConnect"))));
+ //BA.debugLineNum = 35;BA.debugLine="Main.minDisconnect = Map1.Get(\"minDisconnect\") *";
+mostCurrent._main._mindisconnect /*int*/  = (int) ((double)(BA.ObjectToNumber(_map1.Get((Object)("minDisconnect"))))*1000);
+ //BA.debugLineNum = 36;BA.debugLine="Main.minConnect = Map1.Get(\"minConnect\") * 1000";
+mostCurrent._main._minconnect /*int*/  = (int) ((double)(BA.ObjectToNumber(_map1.Get((Object)("minConnect"))))*1000);
  //BA.debugLineNum = 38;BA.debugLine="If Main.telefonos = \"\" Then";
 if ((mostCurrent._main._telefonos /*String*/ ).equals("")) { 
  //BA.debugLineNum = 39;BA.debugLine="Main.telefonos = \"\"";
@@ -156,19 +156,19 @@ mostCurrent._main._telefonos /*String*/  = "";
  };
  //BA.debugLineNum = 41;BA.debugLine="If Main.minConnect = 0 Then";
 if (mostCurrent._main._minconnect /*int*/ ==0) { 
- //BA.debugLineNum = 42;BA.debugLine="Main.minConnect = 600000";
-mostCurrent._main._minconnect /*int*/  = (int) (600000);
+ //BA.debugLineNum = 42;BA.debugLine="Main.minConnect = 600";
+mostCurrent._main._minconnect /*int*/  = (int) (600);
  };
  //BA.debugLineNum = 44;BA.debugLine="If Main.minDisconnect = 0 Then";
 if (mostCurrent._main._mindisconnect /*int*/ ==0) { 
- //BA.debugLineNum = 45;BA.debugLine="Main.minDisconnect = 60000";
-mostCurrent._main._mindisconnect /*int*/  = (int) (60000);
+ //BA.debugLineNum = 45;BA.debugLine="Main.minDisconnect = 600";
+mostCurrent._main._mindisconnect /*int*/  = (int) (600);
  };
  }else {
- //BA.debugLineNum = 49;BA.debugLine="Main.minDisconnect = 600000";
-mostCurrent._main._mindisconnect /*int*/  = (int) (600000);
- //BA.debugLineNum = 50;BA.debugLine="Main.minConnect = 600000";
-mostCurrent._main._minconnect /*int*/  = (int) (600000);
+ //BA.debugLineNum = 49;BA.debugLine="Main.minDisconnect = 600";
+mostCurrent._main._mindisconnect /*int*/  = (int) (600);
+ //BA.debugLineNum = 50;BA.debugLine="Main.minConnect = 600";
+mostCurrent._main._minconnect /*int*/  = (int) (600);
  };
  //BA.debugLineNum = 52;BA.debugLine="End Sub";
 return "";
