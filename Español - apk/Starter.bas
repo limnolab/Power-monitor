@@ -7,6 +7,7 @@ Version=8.8
 #Region  Service Attributes 
 	#StartAtBoot: False
 	#ExcludeFromLibrary: True
+	'Autor: Joaquín Cochero - jcochero@ilpla.edu.ar
 #End Region
 
 Sub Process_Globals

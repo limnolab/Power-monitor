@@ -128,76 +128,76 @@ public class starter extends  android.app.Service{
 public ilpla.monitor.main _main = null;
 public ilpla.monitor.tracker_energia _tracker_energia = null;
 public static boolean  _application_error(anywheresoftware.b4a.objects.B4AException _error,String _stacktrace) throws Exception{
- //BA.debugLineNum = 22;BA.debugLine="Sub Application_Error (Error As Exception, StackTr";
- //BA.debugLineNum = 23;BA.debugLine="Return True";
+ //BA.debugLineNum = 23;BA.debugLine="Sub Application_Error (Error As Exception, StackTr";
+ //BA.debugLineNum = 24;BA.debugLine="Return True";
 if (true) return anywheresoftware.b4a.keywords.Common.True;
- //BA.debugLineNum = 24;BA.debugLine="End Sub";
+ //BA.debugLineNum = 25;BA.debugLine="End Sub";
 return false;
 }
 public static String  _cargarconfig() throws Exception{
 anywheresoftware.b4a.objects.collections.Map _map1 = null;
- //BA.debugLineNum = 30;BA.debugLine="Sub CargarConfig";
- //BA.debugLineNum = 31;BA.debugLine="If File.Exists(File.DirInternal, \"settings.txt\")";
+ //BA.debugLineNum = 31;BA.debugLine="Sub CargarConfig";
+ //BA.debugLineNum = 32;BA.debugLine="If File.Exists(File.DirInternal, \"settings.txt\")";
 if (anywheresoftware.b4a.keywords.Common.File.Exists(anywheresoftware.b4a.keywords.Common.File.getDirInternal(),"settings.txt")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 32;BA.debugLine="Dim Map1 As Map";
+ //BA.debugLineNum = 33;BA.debugLine="Dim Map1 As Map";
 _map1 = new anywheresoftware.b4a.objects.collections.Map();
- //BA.debugLineNum = 33;BA.debugLine="Map1 = File.ReadMap(File.DirInternal, \"settings.";
+ //BA.debugLineNum = 34;BA.debugLine="Map1 = File.ReadMap(File.DirInternal, \"settings.";
 _map1 = anywheresoftware.b4a.keywords.Common.File.ReadMap(anywheresoftware.b4a.keywords.Common.File.getDirInternal(),"settings.txt");
- //BA.debugLineNum = 34;BA.debugLine="Main.telefonos = Map1.Get(\"telefonos\")";
+ //BA.debugLineNum = 35;BA.debugLine="Main.telefonos = Map1.Get(\"telefonos\")";
 mostCurrent._main._telefonos /*String*/  = BA.ObjectToString(_map1.Get((Object)("telefonos")));
- //BA.debugLineNum = 35;BA.debugLine="Main.minDisconnect = Map1.Get(\"minDisconnect\") *";
+ //BA.debugLineNum = 36;BA.debugLine="Main.minDisconnect = Map1.Get(\"minDisconnect\") *";
 mostCurrent._main._mindisconnect /*int*/  = (int) ((double)(BA.ObjectToNumber(_map1.Get((Object)("minDisconnect"))))*1000);
- //BA.debugLineNum = 36;BA.debugLine="Main.minConnect = Map1.Get(\"minConnect\") * 1000";
+ //BA.debugLineNum = 37;BA.debugLine="Main.minConnect = Map1.Get(\"minConnect\") * 1000";
 mostCurrent._main._minconnect /*int*/  = (int) ((double)(BA.ObjectToNumber(_map1.Get((Object)("minConnect"))))*1000);
- //BA.debugLineNum = 38;BA.debugLine="If Main.telefonos = \"\" Then";
+ //BA.debugLineNum = 39;BA.debugLine="If Main.telefonos = \"\" Then";
 if ((mostCurrent._main._telefonos /*String*/ ).equals("")) { 
- //BA.debugLineNum = 39;BA.debugLine="Main.telefonos = \"\"";
+ //BA.debugLineNum = 40;BA.debugLine="Main.telefonos = \"\"";
 mostCurrent._main._telefonos /*String*/  = "";
  };
- //BA.debugLineNum = 41;BA.debugLine="If Main.minConnect = 0 Then";
+ //BA.debugLineNum = 42;BA.debugLine="If Main.minConnect = 0 Then";
 if (mostCurrent._main._minconnect /*int*/ ==0) { 
- //BA.debugLineNum = 42;BA.debugLine="Main.minConnect = 600";
+ //BA.debugLineNum = 43;BA.debugLine="Main.minConnect = 600";
 mostCurrent._main._minconnect /*int*/  = (int) (600);
  };
- //BA.debugLineNum = 44;BA.debugLine="If Main.minDisconnect = 0 Then";
+ //BA.debugLineNum = 45;BA.debugLine="If Main.minDisconnect = 0 Then";
 if (mostCurrent._main._mindisconnect /*int*/ ==0) { 
- //BA.debugLineNum = 45;BA.debugLine="Main.minDisconnect = 600";
+ //BA.debugLineNum = 46;BA.debugLine="Main.minDisconnect = 600";
 mostCurrent._main._mindisconnect /*int*/  = (int) (600);
  };
  }else {
- //BA.debugLineNum = 49;BA.debugLine="Main.minDisconnect = 600";
+ //BA.debugLineNum = 50;BA.debugLine="Main.minDisconnect = 600";
 mostCurrent._main._mindisconnect /*int*/  = (int) (600);
- //BA.debugLineNum = 50;BA.debugLine="Main.minConnect = 600";
+ //BA.debugLineNum = 51;BA.debugLine="Main.minConnect = 600";
 mostCurrent._main._minconnect /*int*/  = (int) (600);
  };
- //BA.debugLineNum = 52;BA.debugLine="End Sub";
+ //BA.debugLineNum = 53;BA.debugLine="End Sub";
 return "";
 }
 public static String  _process_globals() throws Exception{
- //BA.debugLineNum = 6;BA.debugLine="Sub Process_Globals";
- //BA.debugLineNum = 7;BA.debugLine="End Sub";
+ //BA.debugLineNum = 7;BA.debugLine="Sub Process_Globals";
+ //BA.debugLineNum = 8;BA.debugLine="End Sub";
 return "";
 }
 public static String  _service_create() throws Exception{
- //BA.debugLineNum = 9;BA.debugLine="Sub Service_Create";
- //BA.debugLineNum = 12;BA.debugLine="End Sub";
+ //BA.debugLineNum = 10;BA.debugLine="Sub Service_Create";
+ //BA.debugLineNum = 13;BA.debugLine="End Sub";
 return "";
 }
 public static String  _service_destroy() throws Exception{
- //BA.debugLineNum = 26;BA.debugLine="Sub Service_Destroy";
- //BA.debugLineNum = 28;BA.debugLine="End Sub";
+ //BA.debugLineNum = 27;BA.debugLine="Sub Service_Destroy";
+ //BA.debugLineNum = 29;BA.debugLine="End Sub";
 return "";
 }
 public static String  _service_start(anywheresoftware.b4a.objects.IntentWrapper _startingintent) throws Exception{
- //BA.debugLineNum = 14;BA.debugLine="Sub Service_Start (StartingIntent As Intent)";
- //BA.debugLineNum = 15;BA.debugLine="CargarConfig";
+ //BA.debugLineNum = 15;BA.debugLine="Sub Service_Start (StartingIntent As Intent)";
+ //BA.debugLineNum = 16;BA.debugLine="CargarConfig";
 _cargarconfig();
- //BA.debugLineNum = 17;BA.debugLine="End Sub";
+ //BA.debugLineNum = 18;BA.debugLine="End Sub";
 return "";
 }
 public static String  _service_taskremoved() throws Exception{
- //BA.debugLineNum = 19;BA.debugLine="Sub Service_TaskRemoved";
- //BA.debugLineNum = 20;BA.debugLine="End Sub";
+ //BA.debugLineNum = 20;BA.debugLine="Sub Service_TaskRemoved";
+ //BA.debugLineNum = 21;BA.debugLine="End Sub";
 return "";
 }
 }
