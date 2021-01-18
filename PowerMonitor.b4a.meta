@@ -1,0 +1,12 @@
+﻿ModuleBookmarks0=
+ModuleBookmarks1=
+ModuleBookmarks2=
+ModuleBreakpoints0=
+ModuleBreakpoints1=
+ModuleBreakpoints2=
+ModuleClosedNodes0=9,10,11
+ModuleClosedNodes1=
+ModuleClosedNodes2=
+NavigationStack=Tracker_Energia,Service_Create,14,0,Tracker_Energia,Process_Globals,6,0,Main,Activity_Pause,92,0,Starter,Service_Start,17,0,Starter,Service_TaskRemoved,23,0,Starter,CargarConfig,43,3,Starter,Service_Destroy,29,0,Starter,Process_Globals,6,0,Starter,Service_Create,10,0,Main,CargarConfigTxt,107,0,Main,btnSaveConfig_Click,101,0
+SelectedBuild=0
+VisibleModules=1,2

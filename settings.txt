@@ -1,0 +1,3 @@
+minDisconnect=600000
+minConnect=600000
+telefonos=221
