@@ -14,7 +14,7 @@ public class starter extends  android.app.Service{
 			android.content.Intent in = new android.content.Intent(context, starter.class);
 			if (intent != null)
 				in.putExtra("b4a_internal_intent", intent);
-            ServiceHelper.StarterHelper.startServiceFromReceiver (context, in, true, anywheresoftware.b4a.ShellBA.class);
+            ServiceHelper.StarterHelper.startServiceFromReceiver (context, in, true, BA.class);
 		}
 
 	}
@@ -29,7 +29,7 @@ public class starter extends  android.app.Service{
         super.onCreate();
         mostCurrent = this;
         if (processBA == null) {
-		    processBA = new anywheresoftware.b4a.ShellBA(this, null, null, "ilpla.monitor", "ilpla.monitor.starter");
+		    processBA = new BA(this, null, null, "ilpla.monitor", "ilpla.monitor.starter");
             if (BA.isShellModeRuntimeCheck(processBA)) {
                 processBA.raiseEvent2(null, true, "SHELL", false);
 		    }
@@ -124,122 +124,80 @@ public class starter extends  android.app.Service{
 @Override
 	public android.os.IBinder onBind(android.content.Intent intent) {
 		return null;
-	}
-public anywheresoftware.b4a.keywords.Common __c = null;
+	}public anywheresoftware.b4a.keywords.Common __c = null;
 public ilpla.monitor.main _main = null;
 public ilpla.monitor.tracker_energia _tracker_energia = null;
 public static boolean  _application_error(anywheresoftware.b4a.objects.B4AException _error,String _stacktrace) throws Exception{
-RDebugUtils.currentModule="starter";
-if (Debug.shouldDelegate(processBA, "application_error", false))
-	 {return ((Boolean) Debug.delegate(processBA, "application_error", new Object[] {_error,_stacktrace}));}
-RDebugUtils.currentLine=1245184;
- //BA.debugLineNum = 1245184;BA.debugLine="Sub Application_Error (Error As Exception, StackTr";
-RDebugUtils.currentLine=1245185;
- //BA.debugLineNum = 1245185;BA.debugLine="Return True";
+ //BA.debugLineNum = 22;BA.debugLine="Sub Application_Error (Error As Exception, StackTr";
+ //BA.debugLineNum = 23;BA.debugLine="Return True";
 if (true) return anywheresoftware.b4a.keywords.Common.True;
-RDebugUtils.currentLine=1245186;
- //BA.debugLineNum = 1245186;BA.debugLine="End Sub";
+ //BA.debugLineNum = 24;BA.debugLine="End Sub";
 return false;
 }
 public static String  _cargarconfig() throws Exception{
-RDebugUtils.currentModule="starter";
-if (Debug.shouldDelegate(processBA, "cargarconfig", false))
-	 {return ((String) Debug.delegate(processBA, "cargarconfig", null));}
 anywheresoftware.b4a.objects.collections.Map _map1 = null;
-RDebugUtils.currentLine=1376256;
- //BA.debugLineNum = 1376256;BA.debugLine="Sub CargarConfig";
-RDebugUtils.currentLine=1376257;
- //BA.debugLineNum = 1376257;BA.debugLine="If File.Exists(File.DirInternal, \"settings.txt\")";
+ //BA.debugLineNum = 30;BA.debugLine="Sub CargarConfig";
+ //BA.debugLineNum = 31;BA.debugLine="If File.Exists(File.DirInternal, \"settings.txt\")";
 if (anywheresoftware.b4a.keywords.Common.File.Exists(anywheresoftware.b4a.keywords.Common.File.getDirInternal(),"settings.txt")==anywheresoftware.b4a.keywords.Common.True) { 
-RDebugUtils.currentLine=1376258;
- //BA.debugLineNum = 1376258;BA.debugLine="Dim Map1 As Map";
+ //BA.debugLineNum = 32;BA.debugLine="Dim Map1 As Map";
 _map1 = new anywheresoftware.b4a.objects.collections.Map();
-RDebugUtils.currentLine=1376259;
- //BA.debugLineNum = 1376259;BA.debugLine="Map1 = File.ReadMap(File.DirInternal, \"settings.";
+ //BA.debugLineNum = 33;BA.debugLine="Map1 = File.ReadMap(File.DirInternal, \"settings.";
 _map1 = anywheresoftware.b4a.keywords.Common.File.ReadMap(anywheresoftware.b4a.keywords.Common.File.getDirInternal(),"settings.txt");
-RDebugUtils.currentLine=1376260;
- //BA.debugLineNum = 1376260;BA.debugLine="Main.telefonos = Map1.Get(\"telefonos\")";
+ //BA.debugLineNum = 34;BA.debugLine="Main.telefonos = Map1.Get(\"telefonos\")";
 mostCurrent._main._telefonos /*String*/  = BA.ObjectToString(_map1.Get((Object)("telefonos")));
-RDebugUtils.currentLine=1376261;
- //BA.debugLineNum = 1376261;BA.debugLine="Main.minDisconnect = Map1.Get(\"minDisconnect\")";
+ //BA.debugLineNum = 35;BA.debugLine="Main.minDisconnect = Map1.Get(\"minDisconnect\")";
 mostCurrent._main._mindisconnect /*int*/  = (int)(BA.ObjectToNumber(_map1.Get((Object)("minDisconnect"))));
-RDebugUtils.currentLine=1376262;
- //BA.debugLineNum = 1376262;BA.debugLine="Main.minConnect = Map1.Get(\"minConnect\")";
+ //BA.debugLineNum = 36;BA.debugLine="Main.minConnect = Map1.Get(\"minConnect\")";
 mostCurrent._main._minconnect /*int*/  = (int)(BA.ObjectToNumber(_map1.Get((Object)("minConnect"))));
-RDebugUtils.currentLine=1376264;
- //BA.debugLineNum = 1376264;BA.debugLine="If Main.telefonos = \"\" Then";
+ //BA.debugLineNum = 38;BA.debugLine="If Main.telefonos = \"\" Then";
 if ((mostCurrent._main._telefonos /*String*/ ).equals("")) { 
-RDebugUtils.currentLine=1376265;
- //BA.debugLineNum = 1376265;BA.debugLine="Main.telefonos = \"\"";
+ //BA.debugLineNum = 39;BA.debugLine="Main.telefonos = \"\"";
 mostCurrent._main._telefonos /*String*/  = "";
  };
-RDebugUtils.currentLine=1376267;
- //BA.debugLineNum = 1376267;BA.debugLine="If Main.minConnect = 0 Then";
+ //BA.debugLineNum = 41;BA.debugLine="If Main.minConnect = 0 Then";
 if (mostCurrent._main._minconnect /*int*/ ==0) { 
-RDebugUtils.currentLine=1376268;
- //BA.debugLineNum = 1376268;BA.debugLine="Main.minConnect = 600000";
+ //BA.debugLineNum = 42;BA.debugLine="Main.minConnect = 600000";
 mostCurrent._main._minconnect /*int*/  = (int) (600000);
  };
-RDebugUtils.currentLine=1376270;
- //BA.debugLineNum = 1376270;BA.debugLine="If Main.minDisconnect = 0 Then";
+ //BA.debugLineNum = 44;BA.debugLine="If Main.minDisconnect = 0 Then";
 if (mostCurrent._main._mindisconnect /*int*/ ==0) { 
-RDebugUtils.currentLine=1376271;
- //BA.debugLineNum = 1376271;BA.debugLine="Main.minDisconnect = 60000";
+ //BA.debugLineNum = 45;BA.debugLine="Main.minDisconnect = 60000";
 mostCurrent._main._mindisconnect /*int*/  = (int) (60000);
  };
  }else {
-RDebugUtils.currentLine=1376275;
- //BA.debugLineNum = 1376275;BA.debugLine="Main.minDisconnect = 600000";
+ //BA.debugLineNum = 49;BA.debugLine="Main.minDisconnect = 600000";
 mostCurrent._main._mindisconnect /*int*/  = (int) (600000);
-RDebugUtils.currentLine=1376276;
- //BA.debugLineNum = 1376276;BA.debugLine="Main.minConnect = 600000";
+ //BA.debugLineNum = 50;BA.debugLine="Main.minConnect = 600000";
 mostCurrent._main._minconnect /*int*/  = (int) (600000);
  };
-RDebugUtils.currentLine=1376278;
- //BA.debugLineNum = 1376278;BA.debugLine="End Sub";
+ //BA.debugLineNum = 52;BA.debugLine="End Sub";
+return "";
+}
+public static String  _process_globals() throws Exception{
+ //BA.debugLineNum = 6;BA.debugLine="Sub Process_Globals";
+ //BA.debugLineNum = 7;BA.debugLine="End Sub";
 return "";
 }
 public static String  _service_create() throws Exception{
-RDebugUtils.currentModule="starter";
-if (Debug.shouldDelegate(processBA, "service_create", false))
-	 {return ((String) Debug.delegate(processBA, "service_create", null));}
-RDebugUtils.currentLine=1048576;
- //BA.debugLineNum = 1048576;BA.debugLine="Sub Service_Create";
-RDebugUtils.currentLine=1048579;
- //BA.debugLineNum = 1048579;BA.debugLine="End Sub";
+ //BA.debugLineNum = 9;BA.debugLine="Sub Service_Create";
+ //BA.debugLineNum = 12;BA.debugLine="End Sub";
 return "";
 }
 public static String  _service_destroy() throws Exception{
-RDebugUtils.currentModule="starter";
-if (Debug.shouldDelegate(processBA, "service_destroy", false))
-	 {return ((String) Debug.delegate(processBA, "service_destroy", null));}
-RDebugUtils.currentLine=1310720;
- //BA.debugLineNum = 1310720;BA.debugLine="Sub Service_Destroy";
-RDebugUtils.currentLine=1310722;
- //BA.debugLineNum = 1310722;BA.debugLine="End Sub";
+ //BA.debugLineNum = 26;BA.debugLine="Sub Service_Destroy";
+ //BA.debugLineNum = 28;BA.debugLine="End Sub";
 return "";
 }
 public static String  _service_start(anywheresoftware.b4a.objects.IntentWrapper _startingintent) throws Exception{
-RDebugUtils.currentModule="starter";
-if (Debug.shouldDelegate(processBA, "service_start", false))
-	 {return ((String) Debug.delegate(processBA, "service_start", new Object[] {_startingintent}));}
-RDebugUtils.currentLine=1114112;
- //BA.debugLineNum = 1114112;BA.debugLine="Sub Service_Start (StartingIntent As Intent)";
-RDebugUtils.currentLine=1114113;
- //BA.debugLineNum = 1114113;BA.debugLine="CargarConfig";
+ //BA.debugLineNum = 14;BA.debugLine="Sub Service_Start (StartingIntent As Intent)";
+ //BA.debugLineNum = 15;BA.debugLine="CargarConfig";
 _cargarconfig();
-RDebugUtils.currentLine=1114115;
- //BA.debugLineNum = 1114115;BA.debugLine="End Sub";
+ //BA.debugLineNum = 17;BA.debugLine="End Sub";
 return "";
 }
 public static String  _service_taskremoved() throws Exception{
-RDebugUtils.currentModule="starter";
-if (Debug.shouldDelegate(processBA, "service_taskremoved", false))
-	 {return ((String) Debug.delegate(processBA, "service_taskremoved", null));}
-RDebugUtils.currentLine=1179648;
- //BA.debugLineNum = 1179648;BA.debugLine="Sub Service_TaskRemoved";
-RDebugUtils.currentLine=1179649;
- //BA.debugLineNum = 1179649;BA.debugLine="End Sub";
+ //BA.debugLineNum = 19;BA.debugLine="Sub Service_TaskRemoved";
+ //BA.debugLineNum = 20;BA.debugLine="End Sub";
 return "";
 }
 }

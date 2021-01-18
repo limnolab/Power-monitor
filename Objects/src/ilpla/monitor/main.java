@@ -34,7 +34,7 @@ public class main extends Activity implements B4AActivity{
 		super.onCreate(savedInstanceState);
         mostCurrent = this;
 		if (processBA == null) {
-			processBA = new anywheresoftware.b4a.ShellBA(this.getApplicationContext(), null, null, "ilpla.monitor", "ilpla.monitor.main");
+			processBA = new BA(this.getApplicationContext(), null, null, "ilpla.monitor", "ilpla.monitor.main");
 			processBA.loadHtSubs(this.getClass());
 	        float deviceScale = getApplicationContext().getResources().getDisplayMetrics().density;
 	        BALayout.setDeviceScale(deviceScale);
@@ -335,48 +335,6 @@ public class main extends Activity implements B4AActivity{
             
     }
 
-
-
-public static void initializeProcessGlobals() {
-    
-    if (main.processGlobalsRun == false) {
-	    main.processGlobalsRun = true;
-		try {
-		        		
-        } catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-    }
-}
-public static boolean isAnyActivityVisible() {
-    boolean vis = false;
-vis = vis | (main.mostCurrent != null);
-return vis;}
-
-private static BA killProgramHelper(BA ba) {
-    if (ba == null)
-        return null;
-    anywheresoftware.b4a.BA.SharedProcessBA sharedProcessBA = ba.sharedProcessBA;
-    if (sharedProcessBA == null || sharedProcessBA.activityBA == null)
-        return null;
-    return sharedProcessBA.activityBA.get();
-}
-public static void killProgram() {
-     {
-            Activity __a = null;
-            if (main.previousOne != null) {
-				__a = main.previousOne.get();
-			}
-            else {
-                BA ba = killProgramHelper(main.mostCurrent == null ? null : main.mostCurrent.processBA);
-                if (ba != null) __a = ba.activity;
-            }
-            if (__a != null)
-				__a.finish();}
-
-BA.applicationContext.stopService(new android.content.Intent(BA.applicationContext, starter.class));
-BA.applicationContext.stopService(new android.content.Intent(BA.applicationContext, tracker_energia.class));
-}
 public anywheresoftware.b4a.keywords.Common __c = null;
 public static String _telefonos = "";
 public static int _minconnect = 0;
@@ -400,10 +358,12 @@ public anywheresoftware.b4a.objects.EditTextWrapper _txtminconnect = null;
 public anywheresoftware.b4a.objects.EditTextWrapper _txttelefonos = null;
 public ilpla.monitor.starter _starter = null;
 public ilpla.monitor.tracker_energia _tracker_energia = null;
+
+public static boolean isAnyActivityVisible() {
+    boolean vis = false;
+vis = vis | (main.mostCurrent != null);
+return vis;}
 public static void  _activity_create(boolean _firsttime) throws Exception{
-RDebugUtils.currentModule="main";
-if (Debug.shouldDelegate(mostCurrent.activityBA, "activity_create", false))
-	 {Debug.delegate(mostCurrent.activityBA, "activity_create", new Object[] {_firsttime}); return;}
 ResumableSub_Activity_Create rsub = new ResumableSub_Activity_Create(null,_firsttime);
 rsub.resume(processBA, null);
 }
@@ -422,7 +382,6 @@ int groupLen3;
 
 @Override
 public void resume(BA ba, Object[] result) throws Exception{
-RDebugUtils.currentModule="main";
 
     while (true) {
         switch (state) {
@@ -432,11 +391,9 @@ return;
 case 0:
 //C
 this.state = 1;
-RDebugUtils.currentLine=131073;
- //BA.debugLineNum = 131073;BA.debugLine="Activity.LoadLayout(\"MainLayout\")";
+ //BA.debugLineNum = 58;BA.debugLine="Activity.LoadLayout(\"MainLayout\")";
 parent.mostCurrent._activity.LoadLayout("MainLayout",mostCurrent.activityBA);
-RDebugUtils.currentLine=131075;
- //BA.debugLineNum = 131075;BA.debugLine="If FirstTime Then";
+ //BA.debugLineNum = 60;BA.debugLine="If FirstTime Then";
 if (true) break;
 
 case 1:
@@ -449,8 +406,7 @@ this.state = 3;
 case 3:
 //C
 this.state = 4;
-RDebugUtils.currentLine=131076;
- //BA.debugLineNum = 131076;BA.debugLine="For Each Permission As String In Array(rp.PERMIS";
+ //BA.debugLineNum = 61;BA.debugLine="For Each Permission As String In Array(rp.PERMIS";
 if (true) break;
 
 case 4:
@@ -479,21 +435,18 @@ if (true) break;
 case 6:
 //C
 this.state = 7;
-RDebugUtils.currentLine=131077;
- //BA.debugLineNum = 131077;BA.debugLine="Sleep(100)";
-anywheresoftware.b4a.keywords.Common.Sleep(mostCurrent.activityBA,new anywheresoftware.b4a.shell.DebugResumableSub.DelegatableResumableSub(this, "main", "activity_create"),(int) (100));
+ //BA.debugLineNum = 62;BA.debugLine="Sleep(100)";
+anywheresoftware.b4a.keywords.Common.Sleep(mostCurrent.activityBA,this,(int) (100));
 this.state = 18;
 return;
 case 18:
 //C
 this.state = 7;
 ;
-RDebugUtils.currentLine=131078;
- //BA.debugLineNum = 131078;BA.debugLine="rp.CheckAndRequest(Permission)";
+ //BA.debugLineNum = 63;BA.debugLine="rp.CheckAndRequest(Permission)";
 parent._rp.CheckAndRequest(processBA,_permission);
-RDebugUtils.currentLine=131079;
- //BA.debugLineNum = 131079;BA.debugLine="Wait For Activity_PermissionResult (Permission";
-anywheresoftware.b4a.keywords.Common.WaitFor("activity_permissionresult", processBA, new anywheresoftware.b4a.shell.DebugResumableSub.DelegatableResumableSub(this, "main", "activity_create"), null);
+ //BA.debugLineNum = 64;BA.debugLine="Wait For Activity_PermissionResult (Permission";
+anywheresoftware.b4a.keywords.Common.WaitFor("activity_permissionresult", processBA, this, null);
 this.state = 19;
 return;
 case 19:
@@ -502,8 +455,7 @@ this.state = 7;
 _permission = (String) result[0];
 _result = (Boolean) result[1];
 ;
-RDebugUtils.currentLine=131080;
- //BA.debugLineNum = 131080;BA.debugLine="If Result = False Then";
+ //BA.debugLineNum = 65;BA.debugLine="If Result = False Then";
 if (true) break;
 
 case 7:
@@ -516,14 +468,11 @@ this.state = 9;
 case 9:
 //C
 this.state = 10;
-RDebugUtils.currentLine=131081;
- //BA.debugLineNum = 131081;BA.debugLine="ToastMessageShow(\"No permissions set\", False)";
+ //BA.debugLineNum = 66;BA.debugLine="ToastMessageShow(\"No permissions set\", False)";
 anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence("No permissions set"),anywheresoftware.b4a.keywords.Common.False);
-RDebugUtils.currentLine=131082;
- //BA.debugLineNum = 131082;BA.debugLine="Log(\"No Permission: \" & Permission)";
+ //BA.debugLineNum = 67;BA.debugLine="Log(\"No Permission: \" & Permission)";
 anywheresoftware.b4a.keywords.Common.LogImpl("5131082","No Permission: "+_permission,0);
-RDebugUtils.currentLine=131083;
- //BA.debugLineNum = 131083;BA.debugLine="ExitApplication";
+ //BA.debugLineNum = 68;BA.debugLine="ExitApplication";
 anywheresoftware.b4a.keywords.Common.ExitApplication();
  if (true) break;
 
@@ -538,13 +487,11 @@ case 11:
 //C
 this.state = 12;
 ;
-RDebugUtils.currentLine=131087;
- //BA.debugLineNum = 131087;BA.debugLine="Log(\"All permissions OK\")";
+ //BA.debugLineNum = 72;BA.debugLine="Log(\"All permissions OK\")";
 anywheresoftware.b4a.keywords.Common.LogImpl("5131087","All permissions OK",0);
  if (true) break;
 ;
-RDebugUtils.currentLine=131089;
- //BA.debugLineNum = 131089;BA.debugLine="If FirstTime Then";
+ //BA.debugLineNum = 74;BA.debugLine="If FirstTime Then";
 
 case 12:
 //if
@@ -556,14 +503,11 @@ this.state = 14;
 case 14:
 //C
 this.state = 15;
-RDebugUtils.currentLine=131090;
- //BA.debugLineNum = 131090;BA.debugLine="monitorOn = False";
+ //BA.debugLineNum = 75;BA.debugLine="monitorOn = False";
 parent._monitoron = anywheresoftware.b4a.keywords.Common.False;
-RDebugUtils.currentLine=131091;
- //BA.debugLineNum = 131091;BA.debugLine="avisoEnviadoOn = False";
+ //BA.debugLineNum = 76;BA.debugLine="avisoEnviadoOn = False";
 parent._avisoenviadoon = anywheresoftware.b4a.keywords.Common.False;
-RDebugUtils.currentLine=131092;
- //BA.debugLineNum = 131092;BA.debugLine="avisoEnviadoOff = False";
+ //BA.debugLineNum = 77;BA.debugLine="avisoEnviadoOff = False";
 parent._avisoenviadooff = anywheresoftware.b4a.keywords.Common.False;
  if (true) break;
 
@@ -571,62 +515,42 @@ case 15:
 //C
 this.state = -1;
 ;
-RDebugUtils.currentLine=131094;
- //BA.debugLineNum = 131094;BA.debugLine="CargarConfigTxt";
+ //BA.debugLineNum = 79;BA.debugLine="CargarConfigTxt";
 _cargarconfigtxt();
-RDebugUtils.currentLine=131096;
- //BA.debugLineNum = 131096;BA.debugLine="End Sub";
+ //BA.debugLineNum = 81;BA.debugLine="End Sub";
 if (true) break;
 
             }
         }
     }
 }
-public static String  _cargarconfigtxt() throws Exception{
-RDebugUtils.currentModule="main";
-if (Debug.shouldDelegate(mostCurrent.activityBA, "cargarconfigtxt", false))
-	 {return ((String) Debug.delegate(mostCurrent.activityBA, "cargarconfigtxt", null));}
-RDebugUtils.currentLine=393216;
- //BA.debugLineNum = 393216;BA.debugLine="Sub CargarConfigTxt 'Load config";
-RDebugUtils.currentLine=393217;
- //BA.debugLineNum = 393217;BA.debugLine="txtMinConnect.Text = minConnect";
-mostCurrent._txtminconnect.setText(BA.ObjectToCharSequence(_minconnect));
-RDebugUtils.currentLine=393218;
- //BA.debugLineNum = 393218;BA.debugLine="txtMinDisconnect.Text = minDisconnect";
-mostCurrent._txtmindisconnect.setText(BA.ObjectToCharSequence(_mindisconnect));
-RDebugUtils.currentLine=393219;
- //BA.debugLineNum = 393219;BA.debugLine="txtTelefonos.Text = telefonos";
-mostCurrent._txttelefonos.setText(BA.ObjectToCharSequence(_telefonos));
-RDebugUtils.currentLine=393220;
- //BA.debugLineNum = 393220;BA.debugLine="End Sub";
-return "";
+public static void  _activity_permissionresult(String _permission,boolean _result) throws Exception{
 }
 public static String  _activity_pause(boolean _userclosed) throws Exception{
-RDebugUtils.currentModule="main";
-RDebugUtils.currentLine=262144;
- //BA.debugLineNum = 262144;BA.debugLine="Sub Activity_Pause (UserClosed As Boolean)";
-RDebugUtils.currentLine=262146;
- //BA.debugLineNum = 262146;BA.debugLine="End Sub";
+ //BA.debugLineNum = 87;BA.debugLine="Sub Activity_Pause (UserClosed As Boolean)";
+ //BA.debugLineNum = 89;BA.debugLine="End Sub";
 return "";
 }
-public static void  _activity_resume() throws Exception{
-RDebugUtils.currentModule="main";
-if (Debug.shouldDelegate(mostCurrent.activityBA, "activity_resume", false))
-	 {Debug.delegate(mostCurrent.activityBA, "activity_resume", null); return;}
-ResumableSub_Activity_Resume rsub = new ResumableSub_Activity_Resume(null);
+public static String  _activity_resume() throws Exception{
+ //BA.debugLineNum = 82;BA.debugLine="Sub Activity_Resume";
+ //BA.debugLineNum = 84;BA.debugLine="StartService(Tracker_Energia)";
+anywheresoftware.b4a.keywords.Common.StartService(processBA,(Object)(mostCurrent._tracker_energia.getObject()));
+ //BA.debugLineNum = 86;BA.debugLine="End Sub";
+return "";
+}
+public static void  _btnexit_click() throws Exception{
+ResumableSub_btnExit_Click rsub = new ResumableSub_btnExit_Click(null);
 rsub.resume(processBA, null);
 }
-public static class ResumableSub_Activity_Resume extends BA.ResumableSub {
-public ResumableSub_Activity_Resume(ilpla.monitor.main parent) {
+public static class ResumableSub_btnExit_Click extends BA.ResumableSub {
+public ResumableSub_btnExit_Click(ilpla.monitor.main parent) {
 this.parent = parent;
 }
 ilpla.monitor.main parent;
-String _permission = "";
-boolean _result = false;
+int _result = 0;
 
 @Override
 public void resume(BA ba, Object[] result) throws Exception{
-RDebugUtils.currentModule="main";
 
     while (true) {
         switch (state) {
@@ -636,371 +560,355 @@ return;
 case 0:
 //C
 this.state = 1;
-RDebugUtils.currentLine=196609;
- //BA.debugLineNum = 196609;BA.debugLine="Wait For Activity_PermissionResult (Permission As";
-anywheresoftware.b4a.keywords.Common.WaitFor("activity_permissionresult", processBA, new anywheresoftware.b4a.shell.DebugResumableSub.DelegatableResumableSub(this, "main", "activity_resume"), null);
-this.state = 5;
+ //BA.debugLineNum = 239;BA.debugLine="Msgbox2Async(\"Sure you want to permanently close";
+anywheresoftware.b4a.keywords.Common.Msgbox2Async(BA.ObjectToCharSequence("Sure you want to permanently close the energy monitor?"),BA.ObjectToCharSequence("Exit forever?"),"Yes!","No, leave the monitor running","",(anywheresoftware.b4a.objects.drawable.CanvasWrapper.BitmapWrapper) anywheresoftware.b4a.AbsObjectWrapper.ConvertToWrapper(new anywheresoftware.b4a.objects.drawable.CanvasWrapper.BitmapWrapper(), (android.graphics.Bitmap)(anywheresoftware.b4a.keywords.Common.Null)),processBA,anywheresoftware.b4a.keywords.Common.False);
+ //BA.debugLineNum = 240;BA.debugLine="Wait For Msgbox_Result(Result As Int)";
+anywheresoftware.b4a.keywords.Common.WaitFor("msgbox_result", processBA, this, null);
+this.state = 7;
 return;
-case 5:
+case 7:
 //C
 this.state = 1;
-_permission = (String) result[0];
-_result = (Boolean) result[1];
+_result = (Integer) result[0];
 ;
-RDebugUtils.currentLine=196610;
- //BA.debugLineNum = 196610;BA.debugLine="If Result Then";
+ //BA.debugLineNum = 242;BA.debugLine="If Result =  DialogResponse.POSITIVE Then";
 if (true) break;
 
 case 1:
 //if
-this.state = 4;
-if (_result) { 
+this.state = 6;
+if (_result==anywheresoftware.b4a.keywords.Common.DialogResponse.POSITIVE) { 
 this.state = 3;
+}else {
+this.state = 5;
 }if (true) break;
 
 case 3:
 //C
-this.state = 4;
-RDebugUtils.currentLine=196612;
- //BA.debugLineNum = 196612;BA.debugLine="StartService(Tracker_Energia)";
-anywheresoftware.b4a.keywords.Common.StartService(processBA,(Object)(parent.mostCurrent._tracker_energia.getObject()));
+this.state = 6;
+ //BA.debugLineNum = 243;BA.debugLine="Activity.Finish";
+parent.mostCurrent._activity.Finish();
+ //BA.debugLineNum = 244;BA.debugLine="ExitApplication";
+anywheresoftware.b4a.keywords.Common.ExitApplication();
  if (true) break;
 
-case 4:
+case 5:
+//C
+this.state = 6;
+ //BA.debugLineNum = 246;BA.debugLine="Return";
+if (true) return ;
+ if (true) break;
+
+case 6:
 //C
 this.state = -1;
 ;
-RDebugUtils.currentLine=196614;
- //BA.debugLineNum = 196614;BA.debugLine="End Sub";
+ //BA.debugLineNum = 251;BA.debugLine="End Sub";
 if (true) break;
 
             }
         }
     }
 }
-public static String  _btnmonitoron_click() throws Exception{
-RDebugUtils.currentModule="main";
-if (Debug.shouldDelegate(mostCurrent.activityBA, "btnmonitoron_click", false))
-	 {return ((String) Debug.delegate(mostCurrent.activityBA, "btnmonitoron_click", null));}
-RDebugUtils.currentLine=917504;
- //BA.debugLineNum = 917504;BA.debugLine="Sub btnMonitorOn_Click 'BUTTON TURNS POWER MONITOR";
-RDebugUtils.currentLine=917505;
- //BA.debugLineNum = 917505;BA.debugLine="If monitorOn = False Then";
-if (_monitoron==anywheresoftware.b4a.keywords.Common.False) { 
-RDebugUtils.currentLine=917506;
- //BA.debugLineNum = 917506;BA.debugLine="cambiarColor 'Changes color";
-_cambiarcolor();
-RDebugUtils.currentLine=917507;
- //BA.debugLineNum = 917507;BA.debugLine="monitorOn = True";
-_monitoron = anywheresoftware.b4a.keywords.Common.True;
-RDebugUtils.currentLine=917508;
- //BA.debugLineNum = 917508;BA.debugLine="ToastMessageShow(\"Energy monitor on\", False)";
-anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence("Energy monitor on"),anywheresoftware.b4a.keywords.Common.False);
-RDebugUtils.currentLine=917509;
- //BA.debugLineNum = 917509;BA.debugLine="lblMonitorOn.Text = \"Monitor ON\"";
-mostCurrent._lblmonitoron.setText(BA.ObjectToCharSequence("Monitor ON"));
-RDebugUtils.currentLine=917510;
- //BA.debugLineNum = 917510;BA.debugLine="btnMonitorOn.Text = \"OFF\"";
-mostCurrent._btnmonitoron.setText(BA.ObjectToCharSequence("OFF"));
-RDebugUtils.currentLine=917511;
- //BA.debugLineNum = 917511;BA.debugLine="txtTelefonos.Enabled = False";
-mostCurrent._txttelefonos.setEnabled(anywheresoftware.b4a.keywords.Common.False);
-RDebugUtils.currentLine=917512;
- //BA.debugLineNum = 917512;BA.debugLine="txtMinConnect.Enabled = False";
-mostCurrent._txtminconnect.setEnabled(anywheresoftware.b4a.keywords.Common.False);
-RDebugUtils.currentLine=917513;
- //BA.debugLineNum = 917513;BA.debugLine="txtMinDisconnect.Enabled = False";
-mostCurrent._txtmindisconnect.setEnabled(anywheresoftware.b4a.keywords.Common.False);
- }else {
-RDebugUtils.currentLine=917515;
- //BA.debugLineNum = 917515;BA.debugLine="monitorOn = False";
-_monitoron = anywheresoftware.b4a.keywords.Common.False;
-RDebugUtils.currentLine=917516;
- //BA.debugLineNum = 917516;BA.debugLine="ToastMessageShow(\"Energy monitor off\", False)";
-anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence("Energy monitor off"),anywheresoftware.b4a.keywords.Common.False);
-RDebugUtils.currentLine=917517;
- //BA.debugLineNum = 917517;BA.debugLine="lblMonitorOn.Text = \"Monitor OFF\"";
-mostCurrent._lblmonitoron.setText(BA.ObjectToCharSequence("Monitor OFF"));
-RDebugUtils.currentLine=917518;
- //BA.debugLineNum = 917518;BA.debugLine="btnMonitorOn.Text = \"ON\"";
-mostCurrent._btnmonitoron.setText(BA.ObjectToCharSequence("ON"));
-RDebugUtils.currentLine=917519;
- //BA.debugLineNum = 917519;BA.debugLine="lblTimer.Text = \"\"";
-mostCurrent._lbltimer.setText(BA.ObjectToCharSequence(""));
-RDebugUtils.currentLine=917520;
- //BA.debugLineNum = 917520;BA.debugLine="pnlFondo.Color = Colors.RGB(72,72,72)";
-mostCurrent._pnlfondo.setColor(anywheresoftware.b4a.keywords.Common.Colors.RGB((int) (72),(int) (72),(int) (72)));
-RDebugUtils.currentLine=917521;
- //BA.debugLineNum = 917521;BA.debugLine="timerDisplay.Enabled = False";
-_timerdisplay.setEnabled(anywheresoftware.b4a.keywords.Common.False);
-RDebugUtils.currentLine=917522;
- //BA.debugLineNum = 917522;BA.debugLine="timerConnect.Enabled = False";
-_timerconnect.setEnabled(anywheresoftware.b4a.keywords.Common.False);
-RDebugUtils.currentLine=917523;
- //BA.debugLineNum = 917523;BA.debugLine="timerDisconnect. Enabled = False";
-_timerdisconnect.setEnabled(anywheresoftware.b4a.keywords.Common.False);
-RDebugUtils.currentLine=917524;
- //BA.debugLineNum = 917524;BA.debugLine="txtTelefonos.Enabled = True";
-mostCurrent._txttelefonos.setEnabled(anywheresoftware.b4a.keywords.Common.True);
-RDebugUtils.currentLine=917525;
- //BA.debugLineNum = 917525;BA.debugLine="txtMinConnect.Enabled = True";
-mostCurrent._txtminconnect.setEnabled(anywheresoftware.b4a.keywords.Common.True);
-RDebugUtils.currentLine=917526;
- //BA.debugLineNum = 917526;BA.debugLine="txtMinDisconnect.Enabled = True";
-mostCurrent._txtmindisconnect.setEnabled(anywheresoftware.b4a.keywords.Common.True);
- };
-RDebugUtils.currentLine=917529;
- //BA.debugLineNum = 917529;BA.debugLine="End Sub";
-return "";
+public static void  _msgbox_result(int _result) throws Exception{
 }
-public static String  _cambiarcolor() throws Exception{
-RDebugUtils.currentModule="main";
-if (Debug.shouldDelegate(mostCurrent.activityBA, "cambiarcolor", false))
-	 {return ((String) Debug.delegate(mostCurrent.activityBA, "cambiarcolor", null));}
-RDebugUtils.currentLine=851968;
- //BA.debugLineNum = 851968;BA.debugLine="Sub cambiarColor 'Changes background colors";
-RDebugUtils.currentLine=851969;
- //BA.debugLineNum = 851969;BA.debugLine="If hayEnergia = True Then";
-if (_hayenergia==anywheresoftware.b4a.keywords.Common.True) { 
-RDebugUtils.currentLine=851970;
- //BA.debugLineNum = 851970;BA.debugLine="pnlFondo.Color = Colors.RGB(0,114,0) 'Green (pow";
-mostCurrent._pnlfondo.setColor(anywheresoftware.b4a.keywords.Common.Colors.RGB((int) (0),(int) (114),(int) (0)));
- }else {
-RDebugUtils.currentLine=851972;
- //BA.debugLineNum = 851972;BA.debugLine="pnlFondo.Color = Colors.RGB(114,0,0) 'Red (power";
-mostCurrent._pnlfondo.setColor(anywheresoftware.b4a.keywords.Common.Colors.RGB((int) (114),(int) (0),(int) (0)));
+public static String  _btnmonitoron_click() throws Exception{
+ //BA.debugLineNum = 201;BA.debugLine="Sub btnMonitorOn_Click 'BUTTON TURNS POWER MONITOR";
+ //BA.debugLineNum = 202;BA.debugLine="If txtTelefonos.Text = \"\" Then";
+if ((mostCurrent._txttelefonos.getText()).equals("")) { 
+ //BA.debugLineNum = 203;BA.debugLine="ToastMessageShow(\"No phone numbers configured...";
+anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence("No phone numbers configured... cancelling monitor"),anywheresoftware.b4a.keywords.Common.False);
+ //BA.debugLineNum = 204;BA.debugLine="Return";
+if (true) return "";
  };
-RDebugUtils.currentLine=851974;
- //BA.debugLineNum = 851974;BA.debugLine="End Sub";
+ //BA.debugLineNum = 206;BA.debugLine="btnSaveConfig_Click";
+_btnsaveconfig_click();
+ //BA.debugLineNum = 208;BA.debugLine="If monitorOn = False Then";
+if (_monitoron==anywheresoftware.b4a.keywords.Common.False) { 
+ //BA.debugLineNum = 209;BA.debugLine="cambiarColor 'Changes color";
+_cambiarcolor();
+ //BA.debugLineNum = 210;BA.debugLine="monitorOn = True";
+_monitoron = anywheresoftware.b4a.keywords.Common.True;
+ //BA.debugLineNum = 211;BA.debugLine="ToastMessageShow(\"Energy monitor on\", False)";
+anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence("Energy monitor on"),anywheresoftware.b4a.keywords.Common.False);
+ //BA.debugLineNum = 212;BA.debugLine="lblMonitorOn.Text = \"Monitor ON\"";
+mostCurrent._lblmonitoron.setText(BA.ObjectToCharSequence("Monitor ON"));
+ //BA.debugLineNum = 213;BA.debugLine="btnMonitorOn.Text = \"OFF\"";
+mostCurrent._btnmonitoron.setText(BA.ObjectToCharSequence("OFF"));
+ //BA.debugLineNum = 214;BA.debugLine="txtTelefonos.Enabled = False";
+mostCurrent._txttelefonos.setEnabled(anywheresoftware.b4a.keywords.Common.False);
+ //BA.debugLineNum = 215;BA.debugLine="txtMinConnect.Enabled = False";
+mostCurrent._txtminconnect.setEnabled(anywheresoftware.b4a.keywords.Common.False);
+ //BA.debugLineNum = 216;BA.debugLine="txtMinDisconnect.Enabled = False";
+mostCurrent._txtmindisconnect.setEnabled(anywheresoftware.b4a.keywords.Common.False);
+ //BA.debugLineNum = 217;BA.debugLine="btnSaveConfig.Enabled = False";
+mostCurrent._btnsaveconfig.setEnabled(anywheresoftware.b4a.keywords.Common.False);
+ }else {
+ //BA.debugLineNum = 219;BA.debugLine="monitorOn = False";
+_monitoron = anywheresoftware.b4a.keywords.Common.False;
+ //BA.debugLineNum = 220;BA.debugLine="ToastMessageShow(\"Energy monitor off\", False)";
+anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence("Energy monitor off"),anywheresoftware.b4a.keywords.Common.False);
+ //BA.debugLineNum = 221;BA.debugLine="lblMonitorOn.Text = \"Monitor OFF\"";
+mostCurrent._lblmonitoron.setText(BA.ObjectToCharSequence("Monitor OFF"));
+ //BA.debugLineNum = 222;BA.debugLine="btnMonitorOn.Text = \"ON\"";
+mostCurrent._btnmonitoron.setText(BA.ObjectToCharSequence("ON"));
+ //BA.debugLineNum = 223;BA.debugLine="lblTimer.Text = \"\"";
+mostCurrent._lbltimer.setText(BA.ObjectToCharSequence(""));
+ //BA.debugLineNum = 224;BA.debugLine="pnlFondo.Color = Colors.RGB(72,72,72)";
+mostCurrent._pnlfondo.setColor(anywheresoftware.b4a.keywords.Common.Colors.RGB((int) (72),(int) (72),(int) (72)));
+ //BA.debugLineNum = 225;BA.debugLine="timerDisplay.Enabled = False";
+_timerdisplay.setEnabled(anywheresoftware.b4a.keywords.Common.False);
+ //BA.debugLineNum = 226;BA.debugLine="timerConnect.Enabled = False";
+_timerconnect.setEnabled(anywheresoftware.b4a.keywords.Common.False);
+ //BA.debugLineNum = 227;BA.debugLine="timerDisconnect. Enabled = False";
+_timerdisconnect.setEnabled(anywheresoftware.b4a.keywords.Common.False);
+ //BA.debugLineNum = 228;BA.debugLine="txtTelefonos.Enabled = True";
+mostCurrent._txttelefonos.setEnabled(anywheresoftware.b4a.keywords.Common.True);
+ //BA.debugLineNum = 229;BA.debugLine="txtMinConnect.Enabled = True";
+mostCurrent._txtminconnect.setEnabled(anywheresoftware.b4a.keywords.Common.True);
+ //BA.debugLineNum = 230;BA.debugLine="txtMinDisconnect.Enabled = True";
+mostCurrent._txtmindisconnect.setEnabled(anywheresoftware.b4a.keywords.Common.True);
+ //BA.debugLineNum = 231;BA.debugLine="btnSaveConfig.Enabled = True";
+mostCurrent._btnsaveconfig.setEnabled(anywheresoftware.b4a.keywords.Common.True);
+ };
+ //BA.debugLineNum = 234;BA.debugLine="End Sub";
 return "";
 }
 public static String  _btnsaveconfig_click() throws Exception{
-RDebugUtils.currentModule="main";
-if (Debug.shouldDelegate(mostCurrent.activityBA, "btnsaveconfig_click", false))
-	 {return ((String) Debug.delegate(mostCurrent.activityBA, "btnsaveconfig_click", null));}
 anywheresoftware.b4a.objects.collections.Map _map1 = null;
-RDebugUtils.currentLine=327680;
- //BA.debugLineNum = 327680;BA.debugLine="Sub btnSaveConfig_Click 'Save config button";
-RDebugUtils.currentLine=327681;
- //BA.debugLineNum = 327681;BA.debugLine="Dim Map1 As Map";
+ //BA.debugLineNum = 93;BA.debugLine="Sub btnSaveConfig_Click 'Save config button";
+ //BA.debugLineNum = 94;BA.debugLine="Dim Map1 As Map";
 _map1 = new anywheresoftware.b4a.objects.collections.Map();
-RDebugUtils.currentLine=327682;
- //BA.debugLineNum = 327682;BA.debugLine="Map1.Initialize";
+ //BA.debugLineNum = 95;BA.debugLine="Map1.Initialize";
 _map1.Initialize();
-RDebugUtils.currentLine=327683;
- //BA.debugLineNum = 327683;BA.debugLine="Map1.Put(\"telefonos\", txtTelefonos.Text)";
+ //BA.debugLineNum = 96;BA.debugLine="Map1.Put(\"telefonos\", txtTelefonos.Text)";
 _map1.Put((Object)("telefonos"),(Object)(mostCurrent._txttelefonos.getText()));
-RDebugUtils.currentLine=327684;
- //BA.debugLineNum = 327684;BA.debugLine="Map1.Put(\"minDisconnect\",txtMinDisconnect.Text)";
+ //BA.debugLineNum = 97;BA.debugLine="Map1.Put(\"minDisconnect\",txtMinDisconnect.Text)";
 _map1.Put((Object)("minDisconnect"),(Object)(mostCurrent._txtmindisconnect.getText()));
-RDebugUtils.currentLine=327685;
- //BA.debugLineNum = 327685;BA.debugLine="Map1.Put(\"minConnect\", txtMinConnect.Text)";
+ //BA.debugLineNum = 98;BA.debugLine="Map1.Put(\"minConnect\", txtMinConnect.Text)";
 _map1.Put((Object)("minConnect"),(Object)(mostCurrent._txtminconnect.getText()));
-RDebugUtils.currentLine=327686;
- //BA.debugLineNum = 327686;BA.debugLine="File.WriteMap(File.DirInternal, \"settings.txt\", M";
+ //BA.debugLineNum = 99;BA.debugLine="File.WriteMap(File.DirInternal, \"settings.txt\", M";
 anywheresoftware.b4a.keywords.Common.File.WriteMap(anywheresoftware.b4a.keywords.Common.File.getDirInternal(),"settings.txt",_map1);
-RDebugUtils.currentLine=327687;
- //BA.debugLineNum = 327687;BA.debugLine="minConnect = txtMinConnect.Text";
+ //BA.debugLineNum = 100;BA.debugLine="minConnect = txtMinConnect.Text";
 _minconnect = (int)(Double.parseDouble(mostCurrent._txtminconnect.getText()));
-RDebugUtils.currentLine=327688;
- //BA.debugLineNum = 327688;BA.debugLine="minDisconnect = txtMinDisconnect.Text";
+ //BA.debugLineNum = 101;BA.debugLine="minDisconnect = txtMinDisconnect.Text";
 _mindisconnect = (int)(Double.parseDouble(mostCurrent._txtmindisconnect.getText()));
-RDebugUtils.currentLine=327689;
- //BA.debugLineNum = 327689;BA.debugLine="telefonos = txtTelefonos.Text";
+ //BA.debugLineNum = 102;BA.debugLine="telefonos = txtTelefonos.Text";
 _telefonos = mostCurrent._txttelefonos.getText();
-RDebugUtils.currentLine=327690;
- //BA.debugLineNum = 327690;BA.debugLine="ToastMessageShow(\"Config saved!\", False)";
+ //BA.debugLineNum = 103;BA.debugLine="ToastMessageShow(\"Config saved!\", False)";
 anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence("Config saved!"),anywheresoftware.b4a.keywords.Common.False);
-RDebugUtils.currentLine=327691;
- //BA.debugLineNum = 327691;BA.debugLine="End Sub";
+ //BA.debugLineNum = 104;BA.debugLine="End Sub";
+return "";
+}
+public static String  _cambiarcolor() throws Exception{
+ //BA.debugLineNum = 190;BA.debugLine="Sub cambiarColor 'Changes background colors";
+ //BA.debugLineNum = 191;BA.debugLine="If hayEnergia = True Then";
+if (_hayenergia==anywheresoftware.b4a.keywords.Common.True) { 
+ //BA.debugLineNum = 192;BA.debugLine="pnlFondo.Color = Colors.RGB(0,114,0) 'Green (pow";
+mostCurrent._pnlfondo.setColor(anywheresoftware.b4a.keywords.Common.Colors.RGB((int) (0),(int) (114),(int) (0)));
+ }else {
+ //BA.debugLineNum = 194;BA.debugLine="pnlFondo.Color = Colors.RGB(114,0,0) 'Red (power";
+mostCurrent._pnlfondo.setColor(anywheresoftware.b4a.keywords.Common.Colors.RGB((int) (114),(int) (0),(int) (0)));
+ };
+ //BA.debugLineNum = 196;BA.debugLine="End Sub";
+return "";
+}
+public static String  _cargarconfigtxt() throws Exception{
+ //BA.debugLineNum = 105;BA.debugLine="Sub CargarConfigTxt 'Load config";
+ //BA.debugLineNum = 106;BA.debugLine="txtMinConnect.Text = minConnect";
+mostCurrent._txtminconnect.setText(BA.ObjectToCharSequence(_minconnect));
+ //BA.debugLineNum = 107;BA.debugLine="txtMinDisconnect.Text = minDisconnect";
+mostCurrent._txtmindisconnect.setText(BA.ObjectToCharSequence(_mindisconnect));
+ //BA.debugLineNum = 108;BA.debugLine="txtTelefonos.Text = telefonos";
+mostCurrent._txttelefonos.setText(BA.ObjectToCharSequence(_telefonos));
+ //BA.debugLineNum = 109;BA.debugLine="End Sub";
 return "";
 }
 public static String  _conexion() throws Exception{
-RDebugUtils.currentModule="main";
-if (Debug.shouldDelegate(mostCurrent.activityBA, "conexion", false))
-	 {return ((String) Debug.delegate(mostCurrent.activityBA, "conexion", null));}
-RDebugUtils.currentLine=589824;
- //BA.debugLineNum = 589824;BA.debugLine="Sub Conexion ' POWER COMES BACK";
-RDebugUtils.currentLine=589826;
- //BA.debugLineNum = 589826;BA.debugLine="timerDisconnect.Enabled = False";
+ //BA.debugLineNum = 145;BA.debugLine="Sub Conexion ' POWER COMES BACK";
+ //BA.debugLineNum = 147;BA.debugLine="timerDisconnect.Enabled = False";
 _timerdisconnect.setEnabled(anywheresoftware.b4a.keywords.Common.False);
-RDebugUtils.currentLine=589827;
- //BA.debugLineNum = 589827;BA.debugLine="timerDisplay.Enabled = False";
+ //BA.debugLineNum = 148;BA.debugLine="timerDisplay.Enabled = False";
 _timerdisplay.setEnabled(anywheresoftware.b4a.keywords.Common.False);
-RDebugUtils.currentLine=589830;
- //BA.debugLineNum = 589830;BA.debugLine="hayEnergia = True";
+ //BA.debugLineNum = 151;BA.debugLine="hayEnergia = True";
 _hayenergia = anywheresoftware.b4a.keywords.Common.True;
-RDebugUtils.currentLine=589831;
- //BA.debugLineNum = 589831;BA.debugLine="cambiarColor";
+ //BA.debugLineNum = 152;BA.debugLine="cambiarColor";
 _cambiarcolor();
-RDebugUtils.currentLine=589834;
- //BA.debugLineNum = 589834;BA.debugLine="If lblTimer.Text = \"0.0\" Or lblTimer.Text = \"\" Th";
+ //BA.debugLineNum = 155;BA.debugLine="If lblTimer.Text = \"0.0\" Or lblTimer.Text = \"\" Th";
 if ((mostCurrent._lbltimer.getText()).equals("0.0") || (mostCurrent._lbltimer.getText()).equals("")) { 
-RDebugUtils.currentLine=589836;
- //BA.debugLineNum = 589836;BA.debugLine="DisplayTimer(minConnect)";
+ //BA.debugLineNum = 157;BA.debugLine="DisplayTimer(minConnect)";
 _displaytimer(_minconnect);
-RDebugUtils.currentLine=589837;
- //BA.debugLineNum = 589837;BA.debugLine="timerConnect.Initialize(\"timerConnect\", minConne";
+ //BA.debugLineNum = 158;BA.debugLine="timerConnect.Initialize(\"timerConnect\", minConne";
 _timerconnect.Initialize(processBA,"timerConnect",(long) (_minconnect));
-RDebugUtils.currentLine=589838;
- //BA.debugLineNum = 589838;BA.debugLine="timerConnect.Enabled = True";
+ //BA.debugLineNum = 159;BA.debugLine="timerConnect.Enabled = True";
 _timerconnect.setEnabled(anywheresoftware.b4a.keywords.Common.True);
  }else {
-RDebugUtils.currentLine=589840;
- //BA.debugLineNum = 589840;BA.debugLine="lblTimer.Text = \"\"";
+ //BA.debugLineNum = 161;BA.debugLine="lblTimer.Text = \"\"";
 mostCurrent._lbltimer.setText(BA.ObjectToCharSequence(""));
  };
-RDebugUtils.currentLine=589843;
- //BA.debugLineNum = 589843;BA.debugLine="End Sub";
-return "";
-}
-public static String  _displaytimer(int _tiempototal) throws Exception{
-RDebugUtils.currentModule="main";
-if (Debug.shouldDelegate(mostCurrent.activityBA, "displaytimer", false))
-	 {return ((String) Debug.delegate(mostCurrent.activityBA, "displaytimer", new Object[] {_tiempototal}));}
-RDebugUtils.currentLine=720896;
- //BA.debugLineNum = 720896;BA.debugLine="Sub DisplayTimer (tiempoTotal As Int) 'Display tim";
-RDebugUtils.currentLine=720897;
- //BA.debugLineNum = 720897;BA.debugLine="lblTimer.Text = tiempoTotal / 1000";
-mostCurrent._lbltimer.setText(BA.ObjectToCharSequence(_tiempototal/(double)1000));
-RDebugUtils.currentLine=720898;
- //BA.debugLineNum = 720898;BA.debugLine="timerDisplay.Initialize(\"timerDisplay\", 1000)";
-_timerdisplay.Initialize(processBA,"timerDisplay",(long) (1000));
-RDebugUtils.currentLine=720899;
- //BA.debugLineNum = 720899;BA.debugLine="timerDisplay.Enabled = True";
-_timerdisplay.setEnabled(anywheresoftware.b4a.keywords.Common.True);
-RDebugUtils.currentLine=720900;
- //BA.debugLineNum = 720900;BA.debugLine="End Sub";
+ //BA.debugLineNum = 164;BA.debugLine="End Sub";
 return "";
 }
 public static String  _desconexion() throws Exception{
-RDebugUtils.currentModule="main";
-if (Debug.shouldDelegate(mostCurrent.activityBA, "desconexion", false))
-	 {return ((String) Debug.delegate(mostCurrent.activityBA, "desconexion", null));}
-RDebugUtils.currentLine=458752;
- //BA.debugLineNum = 458752;BA.debugLine="Sub Desconexion ' POWER GOES OUT";
-RDebugUtils.currentLine=458754;
- //BA.debugLineNum = 458754;BA.debugLine="timerConnect.Enabled = False";
+ //BA.debugLineNum = 114;BA.debugLine="Sub Desconexion ' POWER GOES OUT";
+ //BA.debugLineNum = 116;BA.debugLine="timerConnect.Enabled = False";
 _timerconnect.setEnabled(anywheresoftware.b4a.keywords.Common.False);
-RDebugUtils.currentLine=458755;
- //BA.debugLineNum = 458755;BA.debugLine="timerDisplay.Enabled = False";
+ //BA.debugLineNum = 117;BA.debugLine="timerDisplay.Enabled = False";
 _timerdisplay.setEnabled(anywheresoftware.b4a.keywords.Common.False);
-RDebugUtils.currentLine=458758;
- //BA.debugLineNum = 458758;BA.debugLine="hayEnergia = False";
+ //BA.debugLineNum = 120;BA.debugLine="hayEnergia = False";
 _hayenergia = anywheresoftware.b4a.keywords.Common.False;
-RDebugUtils.currentLine=458759;
- //BA.debugLineNum = 458759;BA.debugLine="cambiarColor";
+ //BA.debugLineNum = 121;BA.debugLine="cambiarColor";
 _cambiarcolor();
-RDebugUtils.currentLine=458762;
- //BA.debugLineNum = 458762;BA.debugLine="If lblTimer.Text = \"0.0\" Or lblTimer.Text = \"\" Th";
+ //BA.debugLineNum = 124;BA.debugLine="If lblTimer.Text = \"0.0\" Or lblTimer.Text = \"\" Th";
 if ((mostCurrent._lbltimer.getText()).equals("0.0") || (mostCurrent._lbltimer.getText()).equals("")) { 
-RDebugUtils.currentLine=458764;
- //BA.debugLineNum = 458764;BA.debugLine="DisplayTimer(minDisconnect)";
+ //BA.debugLineNum = 126;BA.debugLine="DisplayTimer(minDisconnect)";
 _displaytimer(_mindisconnect);
-RDebugUtils.currentLine=458765;
- //BA.debugLineNum = 458765;BA.debugLine="timerDisconnect.Initialize(\"timerDisconnect\", mi";
+ //BA.debugLineNum = 127;BA.debugLine="timerDisconnect.Initialize(\"timerDisconnect\", mi";
 _timerdisconnect.Initialize(processBA,"timerDisconnect",(long) (_mindisconnect));
-RDebugUtils.currentLine=458766;
- //BA.debugLineNum = 458766;BA.debugLine="timerDisconnect.Enabled = True";
+ //BA.debugLineNum = 128;BA.debugLine="timerDisconnect.Enabled = True";
 _timerdisconnect.setEnabled(anywheresoftware.b4a.keywords.Common.True);
  }else {
-RDebugUtils.currentLine=458768;
- //BA.debugLineNum = 458768;BA.debugLine="lblTimer.Text = \"\"";
+ //BA.debugLineNum = 130;BA.debugLine="lblTimer.Text = \"\"";
 mostCurrent._lbltimer.setText(BA.ObjectToCharSequence(""));
  };
-RDebugUtils.currentLine=458770;
- //BA.debugLineNum = 458770;BA.debugLine="End Sub";
+ //BA.debugLineNum = 132;BA.debugLine="End Sub";
+return "";
+}
+public static String  _displaytimer(int _tiempototal) throws Exception{
+ //BA.debugLineNum = 178;BA.debugLine="Sub DisplayTimer (tiempoTotal As Int) 'Display tim";
+ //BA.debugLineNum = 179;BA.debugLine="lblTimer.Text = tiempoTotal / 1000";
+mostCurrent._lbltimer.setText(BA.ObjectToCharSequence(_tiempototal/(double)1000));
+ //BA.debugLineNum = 180;BA.debugLine="timerDisplay.Initialize(\"timerDisplay\", 1000)";
+_timerdisplay.Initialize(processBA,"timerDisplay",(long) (1000));
+ //BA.debugLineNum = 181;BA.debugLine="timerDisplay.Enabled = True";
+_timerdisplay.setEnabled(anywheresoftware.b4a.keywords.Common.True);
+ //BA.debugLineNum = 182;BA.debugLine="End Sub";
+return "";
+}
+public static String  _globals() throws Exception{
+ //BA.debugLineNum = 44;BA.debugLine="Sub Globals";
+ //BA.debugLineNum = 47;BA.debugLine="Private pnlFondo As Panel";
+mostCurrent._pnlfondo = new anywheresoftware.b4a.objects.PanelWrapper();
+ //BA.debugLineNum = 48;BA.debugLine="Private btnMonitorOn As Button";
+mostCurrent._btnmonitoron = new anywheresoftware.b4a.objects.ButtonWrapper();
+ //BA.debugLineNum = 49;BA.debugLine="Private lblTimer As Label";
+mostCurrent._lbltimer = new anywheresoftware.b4a.objects.LabelWrapper();
+ //BA.debugLineNum = 50;BA.debugLine="Private lblMonitorOn As Label";
+mostCurrent._lblmonitoron = new anywheresoftware.b4a.objects.LabelWrapper();
+ //BA.debugLineNum = 51;BA.debugLine="Private btnSaveConfig As Button";
+mostCurrent._btnsaveconfig = new anywheresoftware.b4a.objects.ButtonWrapper();
+ //BA.debugLineNum = 52;BA.debugLine="Private txtMinDisconnect As EditText";
+mostCurrent._txtmindisconnect = new anywheresoftware.b4a.objects.EditTextWrapper();
+ //BA.debugLineNum = 53;BA.debugLine="Private txtMinConnect As EditText";
+mostCurrent._txtminconnect = new anywheresoftware.b4a.objects.EditTextWrapper();
+ //BA.debugLineNum = 54;BA.debugLine="Private txtTelefonos As EditText";
+mostCurrent._txttelefonos = new anywheresoftware.b4a.objects.EditTextWrapper();
+ //BA.debugLineNum = 55;BA.debugLine="End Sub";
+return "";
+}
+
+public static void initializeProcessGlobals() {
+    
+    if (main.processGlobalsRun == false) {
+	    main.processGlobalsRun = true;
+		try {
+		        main._process_globals();
+starter._process_globals();
+tracker_energia._process_globals();
+		
+        } catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+    }
+}public static String  _process_globals() throws Exception{
+ //BA.debugLineNum = 23;BA.debugLine="Sub Process_Globals";
+ //BA.debugLineNum = 25;BA.debugLine="Dim telefonos As String 'phone numbers";
+_telefonos = "";
+ //BA.debugLineNum = 26;BA.debugLine="Dim minConnect As Int = 0 'minimum connected time";
+_minconnect = (int) (0);
+ //BA.debugLineNum = 27;BA.debugLine="Dim minDisconnect As Int = 0 'minimum disconnecte";
+_mindisconnect = (int) (0);
+ //BA.debugLineNum = 30;BA.debugLine="Dim monitorOn As Boolean";
+_monitoron = false;
+ //BA.debugLineNum = 31;BA.debugLine="Dim avisoEnviadoOn As Boolean";
+_avisoenviadoon = false;
+ //BA.debugLineNum = 32;BA.debugLine="Dim avisoEnviadoOff As Boolean";
+_avisoenviadooff = false;
+ //BA.debugLineNum = 33;BA.debugLine="Dim hayEnergia As Boolean";
+_hayenergia = false;
+ //BA.debugLineNum = 36;BA.debugLine="Dim timerConnect As Timer";
+_timerconnect = new anywheresoftware.b4a.objects.Timer();
+ //BA.debugLineNum = 37;BA.debugLine="Dim timerDisconnect As Timer";
+_timerdisconnect = new anywheresoftware.b4a.objects.Timer();
+ //BA.debugLineNum = 38;BA.debugLine="Dim timerDisplay As Timer";
+_timerdisplay = new anywheresoftware.b4a.objects.Timer();
+ //BA.debugLineNum = 41;BA.debugLine="Dim p As PhoneSms";
+_p = new anywheresoftware.b4a.phone.Phone.PhoneSms();
+ //BA.debugLineNum = 42;BA.debugLine="Dim rp As RuntimePermissions";
+_rp = new anywheresoftware.b4a.objects.RuntimePermissions();
+ //BA.debugLineNum = 43;BA.debugLine="End Sub";
 return "";
 }
 public static String  _timerconnect_tick() throws Exception{
-RDebugUtils.currentModule="main";
-if (Debug.shouldDelegate(mostCurrent.activityBA, "timerconnect_tick", false))
-	 {return ((String) Debug.delegate(mostCurrent.activityBA, "timerconnect_tick", null));}
 String[] _numerostel = null;
 int _i = 0;
-RDebugUtils.currentLine=655360;
- //BA.debugLineNum = 655360;BA.debugLine="Sub timerConnect_Tick 'Connection timer tick";
-RDebugUtils.currentLine=655362;
- //BA.debugLineNum = 655362;BA.debugLine="If hayEnergia = True Then";
+ //BA.debugLineNum = 165;BA.debugLine="Sub timerConnect_Tick 'Connection timer tick";
+ //BA.debugLineNum = 167;BA.debugLine="If hayEnergia = True Then";
 if (_hayenergia==anywheresoftware.b4a.keywords.Common.True) { 
-RDebugUtils.currentLine=655363;
- //BA.debugLineNum = 655363;BA.debugLine="ToastMessageShow(\"Energy back, sending SMS...\",";
+ //BA.debugLineNum = 168;BA.debugLine="ToastMessageShow(\"Energy back, sending SMS...\",";
 anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence("Energy back, sending SMS..."),anywheresoftware.b4a.keywords.Common.False);
-RDebugUtils.currentLine=655365;
- //BA.debugLineNum = 655365;BA.debugLine="Dim numerosTel() As String = Regex.Split(\",\", te";
+ //BA.debugLineNum = 170;BA.debugLine="Dim numerosTel() As String = Regex.Split(\",\", te";
 _numerostel = anywheresoftware.b4a.keywords.Common.Regex.Split(",",_telefonos);
-RDebugUtils.currentLine=655366;
- //BA.debugLineNum = 655366;BA.debugLine="For i = 0 To numerosTel.Length - 1";
+ //BA.debugLineNum = 171;BA.debugLine="For i = 0 To numerosTel.Length - 1";
 {
 final int step4 = 1;
 final int limit4 = (int) (_numerostel.length-1);
 _i = (int) (0) ;
 for (;_i <= limit4 ;_i = _i + step4 ) {
-RDebugUtils.currentLine=655367;
- //BA.debugLineNum = 655367;BA.debugLine="p.Send(numerosTel(i),\"Energy restored!\")";
+ //BA.debugLineNum = 172;BA.debugLine="p.Send(numerosTel(i),\"Energy restored!\")";
 _p.Send(_numerostel[_i],"Energy restored!");
  }
 };
  };
-RDebugUtils.currentLine=655371;
- //BA.debugLineNum = 655371;BA.debugLine="timerConnect.Enabled = False";
+ //BA.debugLineNum = 176;BA.debugLine="timerConnect.Enabled = False";
 _timerconnect.setEnabled(anywheresoftware.b4a.keywords.Common.False);
-RDebugUtils.currentLine=655372;
- //BA.debugLineNum = 655372;BA.debugLine="End Sub";
+ //BA.debugLineNum = 177;BA.debugLine="End Sub";
 return "";
 }
 public static String  _timerdisconnect_tick() throws Exception{
-RDebugUtils.currentModule="main";
-if (Debug.shouldDelegate(mostCurrent.activityBA, "timerdisconnect_tick", false))
-	 {return ((String) Debug.delegate(mostCurrent.activityBA, "timerdisconnect_tick", null));}
 String[] _numerostel = null;
 int _i = 0;
-RDebugUtils.currentLine=524288;
- //BA.debugLineNum = 524288;BA.debugLine="Sub timerDisconnect_Tick ' Disconnection timer tic";
-RDebugUtils.currentLine=524290;
- //BA.debugLineNum = 524290;BA.debugLine="ToastMessageShow(\"Sending SMS for power off...\",";
+ //BA.debugLineNum = 133;BA.debugLine="Sub timerDisconnect_Tick ' Disconnection timer tic";
+ //BA.debugLineNum = 135;BA.debugLine="ToastMessageShow(\"Sending SMS for power off...\",";
 anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence("Sending SMS for power off..."),anywheresoftware.b4a.keywords.Common.False);
-RDebugUtils.currentLine=524291;
- //BA.debugLineNum = 524291;BA.debugLine="Dim numerosTel() As String = Regex.Split(\",\", tel";
+ //BA.debugLineNum = 136;BA.debugLine="Dim numerosTel() As String = Regex.Split(\",\", tel";
 _numerostel = anywheresoftware.b4a.keywords.Common.Regex.Split(",",_telefonos);
-RDebugUtils.currentLine=524292;
- //BA.debugLineNum = 524292;BA.debugLine="For i = 0 To numerosTel.Length - 1";
+ //BA.debugLineNum = 137;BA.debugLine="For i = 0 To numerosTel.Length - 1";
 {
 final int step3 = 1;
 final int limit3 = (int) (_numerostel.length-1);
 _i = (int) (0) ;
 for (;_i <= limit3 ;_i = _i + step3 ) {
-RDebugUtils.currentLine=524293;
- //BA.debugLineNum = 524293;BA.debugLine="p.Send(numerosTel(i),\"Power is out!\")";
+ //BA.debugLineNum = 138;BA.debugLine="p.Send(numerosTel(i),\"Power is out!\")";
 _p.Send(_numerostel[_i],"Power is out!");
  }
 };
-RDebugUtils.currentLine=524296;
- //BA.debugLineNum = 524296;BA.debugLine="timerDisconnect.Enabled = False";
+ //BA.debugLineNum = 141;BA.debugLine="timerDisconnect.Enabled = False";
 _timerdisconnect.setEnabled(anywheresoftware.b4a.keywords.Common.False);
-RDebugUtils.currentLine=524297;
- //BA.debugLineNum = 524297;BA.debugLine="End Sub";
+ //BA.debugLineNum = 142;BA.debugLine="End Sub";
 return "";
 }
 public static String  _timerdisplay_tick() throws Exception{
-RDebugUtils.currentModule="main";
-if (Debug.shouldDelegate(mostCurrent.activityBA, "timerdisplay_tick", false))
-	 {return ((String) Debug.delegate(mostCurrent.activityBA, "timerdisplay_tick", null));}
-RDebugUtils.currentLine=786432;
- //BA.debugLineNum = 786432;BA.debugLine="Sub timerDisplay_Tick 'Timer ticks";
-RDebugUtils.currentLine=786433;
- //BA.debugLineNum = 786433;BA.debugLine="If lblTimer.Text > 0 Then";
+ //BA.debugLineNum = 183;BA.debugLine="Sub timerDisplay_Tick 'Timer ticks";
+ //BA.debugLineNum = 184;BA.debugLine="If lblTimer.Text > 0 Then";
 if ((double)(Double.parseDouble(mostCurrent._lbltimer.getText()))>0) { 
-RDebugUtils.currentLine=786434;
- //BA.debugLineNum = 786434;BA.debugLine="lblTimer.Text = lblTimer.Text - 1";
+ //BA.debugLineNum = 185;BA.debugLine="lblTimer.Text = lblTimer.Text - 1";
 mostCurrent._lbltimer.setText(BA.ObjectToCharSequence((double)(Double.parseDouble(mostCurrent._lbltimer.getText()))-1));
  }else {
-RDebugUtils.currentLine=786436;
- //BA.debugLineNum = 786436;BA.debugLine="timerDisplay.Enabled = False";
+ //BA.debugLineNum = 187;BA.debugLine="timerDisplay.Enabled = False";
 _timerdisplay.setEnabled(anywheresoftware.b4a.keywords.Common.False);
  };
-RDebugUtils.currentLine=786438;
- //BA.debugLineNum = 786438;BA.debugLine="End Sub";
+ //BA.debugLineNum = 189;BA.debugLine="End Sub";
 return "";
 }
 }

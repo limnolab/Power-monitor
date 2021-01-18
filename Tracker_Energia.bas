@@ -32,7 +32,7 @@ Sub CreateNotification (Body As String) As Notification
 	Dim notification As Notification
 	notification.Initialize2(notification.IMPORTANCE_LOW)
 	notification.Icon = "icon"
-	notification.SetInfo("Controlando energía", Body, Main)
+	notification.SetInfo("Checking power", Body, Main)
 	Return notification
 End Sub
 
