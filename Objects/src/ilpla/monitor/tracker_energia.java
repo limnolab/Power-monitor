@@ -131,93 +131,93 @@ public ilpla.monitor.main _main = null;
 public ilpla.monitor.starter _starter = null;
 public static anywheresoftware.b4a.objects.NotificationWrapper  _createnotification(String _body) throws Exception{
 anywheresoftware.b4a.objects.NotificationWrapper _notification = null;
- //BA.debugLineNum = 25;BA.debugLine="Sub CreateNotification (Body As String) As Notific";
- //BA.debugLineNum = 26;BA.debugLine="Dim notification As Notification";
+ //BA.debugLineNum = 26;BA.debugLine="Sub CreateNotification (Body As String) As Notific";
+ //BA.debugLineNum = 27;BA.debugLine="Dim notification As Notification";
 _notification = new anywheresoftware.b4a.objects.NotificationWrapper();
- //BA.debugLineNum = 27;BA.debugLine="notification.Initialize2(notification.IMPORTANCE_";
+ //BA.debugLineNum = 28;BA.debugLine="notification.Initialize2(notification.IMPORTANCE_";
 _notification.Initialize2(_notification.IMPORTANCE_LOW);
- //BA.debugLineNum = 28;BA.debugLine="notification.Icon = \"icon\"";
+ //BA.debugLineNum = 29;BA.debugLine="notification.Icon = \"icon\"";
 _notification.setIcon("icon");
- //BA.debugLineNum = 29;BA.debugLine="notification.SetInfo(\"Checking power\", Body, Main";
+ //BA.debugLineNum = 30;BA.debugLine="notification.SetInfo(\"Checking power\", Body, Main";
 _notification.SetInfoNew(processBA,BA.ObjectToCharSequence("Checking power"),BA.ObjectToCharSequence(_body),(Object)(mostCurrent._main.getObject()));
- //BA.debugLineNum = 30;BA.debugLine="Return notification";
+ //BA.debugLineNum = 31;BA.debugLine="Return notification";
 if (true) return _notification;
- //BA.debugLineNum = 31;BA.debugLine="End Sub";
+ //BA.debugLineNum = 32;BA.debugLine="End Sub";
 return null;
 }
 public static String  _phoneevent_batterychanged(int _level,int _scale,boolean _plugged,anywheresoftware.b4a.objects.IntentWrapper _intent) throws Exception{
 boolean _estadoanterior = false;
- //BA.debugLineNum = 33;BA.debugLine="Sub PhoneEvent_BatteryChanged( Level As Int, Scale";
- //BA.debugLineNum = 35;BA.debugLine="Dim estadoAnterior As Boolean";
+ //BA.debugLineNum = 34;BA.debugLine="Sub PhoneEvent_BatteryChanged( Level As Int, Scale";
+ //BA.debugLineNum = 36;BA.debugLine="Dim estadoAnterior As Boolean";
 _estadoanterior = false;
- //BA.debugLineNum = 36;BA.debugLine="If Main.hayEnergia = True Then";
+ //BA.debugLineNum = 37;BA.debugLine="If Main.hayEnergia = True Then";
 if (mostCurrent._main._hayenergia /*boolean*/ ==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 37;BA.debugLine="estadoAnterior = True";
+ //BA.debugLineNum = 38;BA.debugLine="estadoAnterior = True";
 _estadoanterior = anywheresoftware.b4a.keywords.Common.True;
  };
- //BA.debugLineNum = 40;BA.debugLine="If Plugged = False Then";
+ //BA.debugLineNum = 41;BA.debugLine="If Plugged = False Then";
 if (_plugged==anywheresoftware.b4a.keywords.Common.False) { 
- //BA.debugLineNum = 42;BA.debugLine="Main.hayEnergia = False";
+ //BA.debugLineNum = 43;BA.debugLine="Main.hayEnergia = False";
 mostCurrent._main._hayenergia /*boolean*/  = anywheresoftware.b4a.keywords.Common.False;
- //BA.debugLineNum = 43;BA.debugLine="If Main.monitorOn = True Then";
+ //BA.debugLineNum = 44;BA.debugLine="If Main.monitorOn = True Then";
 if (mostCurrent._main._monitoron /*boolean*/ ==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 45;BA.debugLine="If estadoAnterior = True Then";
+ //BA.debugLineNum = 46;BA.debugLine="If estadoAnterior = True Then";
 if (_estadoanterior==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 46;BA.debugLine="ToastMessageShow(\"Power out! Starting SMS time";
+ //BA.debugLineNum = 47;BA.debugLine="ToastMessageShow(\"Power out! Starting SMS time";
 anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence("Power out! Starting SMS timer"),anywheresoftware.b4a.keywords.Common.True);
- //BA.debugLineNum = 47;BA.debugLine="CallSubDelayed(Main, \"Desconexion\")";
+ //BA.debugLineNum = 48;BA.debugLine="CallSubDelayed(Main, \"Desconexion\")";
 anywheresoftware.b4a.keywords.Common.CallSubDelayed(processBA,(Object)(mostCurrent._main.getObject()),"Desconexion");
  };
  };
  }else if(_plugged==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 53;BA.debugLine="Main.hayEnergia = True";
+ //BA.debugLineNum = 54;BA.debugLine="Main.hayEnergia = True";
 mostCurrent._main._hayenergia /*boolean*/  = anywheresoftware.b4a.keywords.Common.True;
- //BA.debugLineNum = 55;BA.debugLine="If Main.monitorOn = True Then";
+ //BA.debugLineNum = 56;BA.debugLine="If Main.monitorOn = True Then";
 if (mostCurrent._main._monitoron /*boolean*/ ==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 57;BA.debugLine="If estadoAnterior = False Then";
+ //BA.debugLineNum = 58;BA.debugLine="If estadoAnterior = False Then";
 if (_estadoanterior==anywheresoftware.b4a.keywords.Common.False) { 
- //BA.debugLineNum = 58;BA.debugLine="ToastMessageShow(\"Power back! Starting SMS tim";
+ //BA.debugLineNum = 59;BA.debugLine="ToastMessageShow(\"Power back! Starting SMS tim";
 anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence("Power back! Starting SMS timer"),anywheresoftware.b4a.keywords.Common.True);
- //BA.debugLineNum = 59;BA.debugLine="CallSubDelayed(Main, \"Conexion\")";
+ //BA.debugLineNum = 60;BA.debugLine="CallSubDelayed(Main, \"Conexion\")";
 anywheresoftware.b4a.keywords.Common.CallSubDelayed(processBA,(Object)(mostCurrent._main.getObject()),"Conexion");
  };
  };
  };
- //BA.debugLineNum = 63;BA.debugLine="End Sub";
+ //BA.debugLineNum = 64;BA.debugLine="End Sub";
 return "";
 }
 public static String  _process_globals() throws Exception{
- //BA.debugLineNum = 6;BA.debugLine="Sub Process_Globals";
- //BA.debugLineNum = 7;BA.debugLine="Private lock As PhoneWakeState";
+ //BA.debugLineNum = 7;BA.debugLine="Sub Process_Globals";
+ //BA.debugLineNum = 8;BA.debugLine="Private lock As PhoneWakeState";
 _lock = new anywheresoftware.b4a.phone.Phone.PhoneWakeState();
- //BA.debugLineNum = 8;BA.debugLine="Dim PhoneEvent As PhoneEvents";
+ //BA.debugLineNum = 9;BA.debugLine="Dim PhoneEvent As PhoneEvents";
 _phoneevent = new anywheresoftware.b4a.phone.PhoneEvents();
- //BA.debugLineNum = 9;BA.debugLine="End Sub";
+ //BA.debugLineNum = 10;BA.debugLine="End Sub";
 return "";
 }
 public static String  _service_create() throws Exception{
- //BA.debugLineNum = 11;BA.debugLine="Sub Service_Create";
- //BA.debugLineNum = 12;BA.debugLine="Service.AutomaticForegroundMode = Service.AUTOMAT";
+ //BA.debugLineNum = 12;BA.debugLine="Sub Service_Create";
+ //BA.debugLineNum = 13;BA.debugLine="Service.AutomaticForegroundMode = Service.AUTOMAT";
 mostCurrent._service.AutomaticForegroundMode = mostCurrent._service.AUTOMATIC_FOREGROUND_NEVER;
- //BA.debugLineNum = 13;BA.debugLine="lock.PartialLock";
+ //BA.debugLineNum = 14;BA.debugLine="lock.PartialLock";
 _lock.PartialLock(processBA);
- //BA.debugLineNum = 14;BA.debugLine="End Sub";
+ //BA.debugLineNum = 15;BA.debugLine="End Sub";
 return "";
 }
 public static String  _service_destroy() throws Exception{
- //BA.debugLineNum = 21;BA.debugLine="Sub Service_Destroy";
- //BA.debugLineNum = 22;BA.debugLine="lock.ReleasePartialLock";
+ //BA.debugLineNum = 22;BA.debugLine="Sub Service_Destroy";
+ //BA.debugLineNum = 23;BA.debugLine="lock.ReleasePartialLock";
 _lock.ReleasePartialLock();
- //BA.debugLineNum = 23;BA.debugLine="End Sub";
+ //BA.debugLineNum = 24;BA.debugLine="End Sub";
 return "";
 }
 public static String  _service_start(anywheresoftware.b4a.objects.IntentWrapper _startingintent) throws Exception{
- //BA.debugLineNum = 16;BA.debugLine="Sub Service_Start (StartingIntent As Intent)";
- //BA.debugLineNum = 17;BA.debugLine="Service.StartForeground(1, CreateNotification(\"..";
+ //BA.debugLineNum = 17;BA.debugLine="Sub Service_Start (StartingIntent As Intent)";
+ //BA.debugLineNum = 18;BA.debugLine="Service.StartForeground(1, CreateNotification(\"..";
 mostCurrent._service.StartForeground((int) (1),(android.app.Notification)(_createnotification("...").getObject()));
- //BA.debugLineNum = 18;BA.debugLine="PhoneEvent.Initialize(\"PhoneEvent\")";
+ //BA.debugLineNum = 19;BA.debugLine="PhoneEvent.Initialize(\"PhoneEvent\")";
 _phoneevent.Initialize(processBA,"PhoneEvent");
- //BA.debugLineNum = 19;BA.debugLine="End Sub";
+ //BA.debugLineNum = 20;BA.debugLine="End Sub";
 return "";
 }
 }

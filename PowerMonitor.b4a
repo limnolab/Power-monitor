@@ -26,6 +26,7 @@ Version=10.5
 	'SupportedOrientations possible values: unspecified, landscape or portrait.
 	#SupportedOrientations: unspecified
 	#CanInstallToExternalStorage: False
+	'Autor: Joaquín Cochero - jcochero@ilpla.edu.ar
 #End Region
 
 #Region  Activity Attributes 

@@ -6,6 +6,7 @@ Version=9
 @EndOfDesignText@
 #Region  Service Attributes 
 	#StartAtBoot: True
+	'Autor: Joaquín Cochero - jcochero@ilpla.edu.ar
 	
 #End Region
 
