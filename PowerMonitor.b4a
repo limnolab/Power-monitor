@@ -1,10 +1,8 @@
 ﻿Build1=Default,ilpla.monitor
-File1=Logo_Temporal.png
-File2=MainLayout.bal
-File3=settings.txt
+File1=MainLayout.bal
+File2=settings.txt
 FileGroup1=Default Group
 FileGroup2=Default Group
-FileGroup3=Default Group
 Group=Default Group
 Library1=core
 Library2=javaobject
@@ -16,7 +14,7 @@ Library7=runtimepermissions
 ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: https://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="5" android:targetSdkVersion="26"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~CreateResourceFromFile(Macro, Themes.DarkTheme)~\n~'End of default text.~\n~~\n~AddPermission(android.permission.READ_PHONE_STATE)~\n~
 Module1=Starter
 Module2=Tracker_Energia
-NumberOfFiles=3
+NumberOfFiles=2
 NumberOfLibraries=7
 NumberOfModules=2
 Version=10.5

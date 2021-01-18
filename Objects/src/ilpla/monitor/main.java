@@ -356,8 +356,8 @@ public anywheresoftware.b4a.objects.ButtonWrapper _btnsaveconfig = null;
 public anywheresoftware.b4a.objects.EditTextWrapper _txtmindisconnect = null;
 public anywheresoftware.b4a.objects.EditTextWrapper _txtminconnect = null;
 public anywheresoftware.b4a.objects.EditTextWrapper _txttelefonos = null;
-public ilpla.monitor.starter _starter = null;
 public ilpla.monitor.tracker_energia _tracker_energia = null;
+public ilpla.monitor.starter _starter = null;
 
 public static boolean isAnyActivityVisible() {
     boolean vis = false;
@@ -471,7 +471,7 @@ this.state = 10;
  //BA.debugLineNum = 66;BA.debugLine="ToastMessageShow(\"No permissions set\", False)";
 anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence("No permissions set"),anywheresoftware.b4a.keywords.Common.False);
  //BA.debugLineNum = 67;BA.debugLine="Log(\"No Permission: \" & Permission)";
-anywheresoftware.b4a.keywords.Common.LogImpl("4131082","No Permission: "+_permission,0);
+anywheresoftware.b4a.keywords.Common.LogImpl("7131082","No Permission: "+_permission,0);
  //BA.debugLineNum = 68;BA.debugLine="ExitApplication";
 anywheresoftware.b4a.keywords.Common.ExitApplication();
  if (true) break;
@@ -488,7 +488,7 @@ case 11:
 this.state = 12;
 ;
  //BA.debugLineNum = 72;BA.debugLine="Log(\"All permissions OK\")";
-anywheresoftware.b4a.keywords.Common.LogImpl("4131087","All permissions OK",0);
+anywheresoftware.b4a.keywords.Common.LogImpl("7131087","All permissions OK",0);
  if (true) break;
 ;
  //BA.debugLineNum = 74;BA.debugLine="If FirstTime Then";
@@ -813,8 +813,8 @@ public static void initializeProcessGlobals() {
 	    main.processGlobalsRun = true;
 		try {
 		        main._process_globals();
-starter._process_globals();
 tracker_energia._process_globals();
+starter._process_globals();
 		
         } catch (Exception e) {
 			throw new RuntimeException(e);

@@ -14,8 +14,8 @@
 	<uses-permission android:name="android.permission.SEND_SMS"/>
 	<uses-permission android:name="android.permission.VIBRATE"/>
 	<uses-permission android:name="android.permission.WAKE_LOCK"/>
-	<uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
 	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+	<uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
 	<uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 	<application
 		android:icon="@drawable/icon"
@@ -33,16 +33,16 @@
 			</intent-filter>
 			
 		</activity>
-		<service android:name=".starter">
-		</service>
-		<receiver android:name=".starter$starter_BR">
-		</receiver>
 		<service android:name=".tracker_energia">
 		</service>
 		<receiver android:name=".tracker_energia$tracker_energia_BR">
 			<intent-filter>
 			<action android:name="android.intent.action.BOOT_COMPLETED"/>
 			</intent-filter>
+		</receiver>
+		<service android:name=".starter">
+		</service>
+		<receiver android:name=".starter$starter_BR">
 		</receiver>
 	</application>
 </manifest>

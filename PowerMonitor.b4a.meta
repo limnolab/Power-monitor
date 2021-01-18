@@ -7,6 +7,6 @@ ModuleBreakpoints2=
 ModuleClosedNodes0=
 ModuleClosedNodes1=
 ModuleClosedNodes2=
-NavigationStack=Main,btnMonitorOn_Click,228,0,Main,Activity_Resume,85,0,Main,CargarConfigTxt,108,0,Main,Activity_Create,80,0,Main,btnSaveConfig_Click,99,5,Main,Process_Globals,30,0,Starter,CargarConfig,37,0,Tracker_Energia,PhoneEvent_BatteryChanged,36,0,Main,Conexion,156,0,Main,Desconexion,125,0
+NavigationStack=Main,btnMonitorOn_Click,228,0,Main,Activity_Resume,85,0,Main,CargarConfigTxt,108,0,Main,Activity_Create,80,0,Main,btnSaveConfig_Click,99,5,Starter,CargarConfig,37,0,Tracker_Energia,PhoneEvent_BatteryChanged,36,0,Main,Conexion,156,0,Main,Desconexion,125,0,Main,Process_Globals,22,0
 SelectedBuild=0
 VisibleModules=2

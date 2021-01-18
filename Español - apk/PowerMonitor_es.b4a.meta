@@ -1,0 +1,12 @@
+﻿ModuleBookmarks0=
+ModuleBookmarks1=
+ModuleBookmarks2=
+ModuleBreakpoints0=
+ModuleBreakpoints1=
+ModuleBreakpoints2=
+ModuleClosedNodes0=
+ModuleClosedNodes1=
+ModuleClosedNodes2=
+NavigationStack=Main,timerDisconnect_Tick,133,5,Main,timerConnect_Tick,167,5,Main,DisplayTimer,178,0,Main,btnMonitorOn_Click,221,6,Main,btnExit_Click,237,6,Main,Activity_Create,73,3,Tracker_Energia,PhoneEvent_BatteryChanged,45,6,Tracker_Energia,CreateNotification,28,2,Tracker_Energia,Service_Create,14,0,Visual Designer,MainLayout.bal,-100,6
+SelectedBuild=0
+VisibleModules=1,2

@@ -1,0 +1,272 @@
+﻿Build1=Default,ilpla.monitor
+File1=MainLayout.bal
+File2=settings.txt
+FileGroup1=Default Group
+FileGroup2=Default Group
+Group=Default Group
+Library1=core
+Library2=javaobject
+Library3=network
+Library4=phone
+Library5=randomaccessfile
+Library6=reflection
+Library7=runtimepermissions
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: https://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="5" android:targetSdkVersion="26"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~CreateResourceFromFile(Macro, Themes.DarkTheme)~\n~'End of default text.~\n~~\n~AddPermission(android.permission.READ_PHONE_STATE)~\n~
+Module1=Starter
+Module2=Tracker_Energia
+NumberOfFiles=2
+NumberOfLibraries=7
+NumberOfModules=2
+Version=10.5
+@EndOfDesignText@
+#Region  Project Attributes 
+	#ApplicationLabel: Monitor de Energía
+	#VersionCode: 1
+	#VersionName: 
+	'SupportedOrientations possible values: unspecified, landscape or portrait.
+	#SupportedOrientations: unspecified
+	#CanInstallToExternalStorage: False
+#End Region
+
+#Region  Activity Attributes 
+	#FullScreen: False
+	#IncludeTitle: True
+#End Region
+
+' APP DESCRIPTION
+' When the monitor is turned ON, it will check if the device is plugged or not
+' If the device gets unplugged, it will wait the milliseconds set in the config [Wait time - No power detected (seconds)] before sending an SMS to the phone numbers defined.
+' Then, when the power comes back, it will wait the milliseconds set in the config [Wait time - Power detected (seconds)] before sending an SMS
+' The settings are saved to an internal .txt file... because it's simple!
+' Important: To change the settings, the monitor must be turned OFF
+
+
+Sub Process_Globals
+	'Config
+	Dim telefonos As String 'phone numbers
+	Dim minConnect As Int = 0 'minimum connected time
+	Dim minDisconnect As Int = 0 'minimum disconnected time
+	
+	'Flags
+	Dim monitorOn As Boolean
+	Dim avisoEnviadoOn As Boolean
+	Dim avisoEnviadoOff As Boolean
+	Dim hayEnergia As Boolean
+
+	'Timers
+	Dim timerConnect As Timer
+	Dim timerDisconnect As Timer
+	Dim timerDisplay As Timer
+
+	'Messages
+	Dim p As PhoneSms
+	Dim rp As RuntimePermissions
+End Sub
+Sub Globals
+	'These global variables will be redeclared each time the activity is created.
+	'These variables can only be accessed from this module.
+	Private pnlFondo As Panel
+	Private btnMonitorOn As Button
+	Private lblTimer As Label
+	Private lblMonitorOn As Label
+	Private btnSaveConfig As Button
+	Private txtMinDisconnect As EditText
+	Private txtMinConnect As EditText
+	Private txtTelefonos As EditText
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+	Activity.LoadLayout("MainLayout")
+	'CHECK PERMISSIONS
+	If FirstTime Then
+		For Each Permission As String In Array(rp.PERMISSION_READ_PHONE_STATE, rp.PERMISSION_SEND_SMS)
+			Sleep(100)
+			rp.CheckAndRequest(Permission)
+			Wait For Activity_PermissionResult (Permission As String, Result As Boolean)
+			If Result = False Then
+				ToastMessageShow("Faltan permisos", False)
+				Log("No Permission: " & Permission)
+				ExitApplication
+			End If
+		Next
+		'we have permission!
+		Log("All permissions OK")
+	End If
+	If FirstTime Then
+		monitorOn = False
+		avisoEnviadoOn = False
+		avisoEnviadoOff = False	
+	End If
+	CargarConfigTxt
+	
+End Sub
+Sub Activity_Resume
+		'Starts the tracking service for power
+		StartService(Tracker_Energia)
+
+End Sub
+Sub Activity_Pause (UserClosed As Boolean)
+	
+End Sub
+
+#Region Config
+
+Sub btnSaveConfig_Click 'Save config button
+	Dim Map1 As Map
+	Map1.Initialize
+	Map1.Put("telefonos", txtTelefonos.Text)
+	Map1.Put("minDisconnect",txtMinDisconnect.Text)
+	Map1.Put("minConnect", txtMinConnect.Text)
+	File.WriteMap(File.DirInternal, "settings.txt", Map1)
+	minConnect = txtMinConnect.Text * 1000
+	minDisconnect = txtMinDisconnect.Text *1000
+	telefonos = txtTelefonos.Text
+	ToastMessageShow("Configuración guardada!", False)
+End Sub
+Sub CargarConfigTxt 'Load config
+	txtMinConnect.Text = minConnect / 1000
+	txtMinDisconnect.Text = minDisconnect / 1000
+	txtTelefonos.Text = telefonos
+End Sub
+
+#End Region
+#Region Timers
+'CONNECTION/DISCONNECTION TIMERS
+Sub Desconexion ' POWER GOES OUT
+	'Turns the timers off
+	timerConnect.Enabled = False
+	timerDisplay.Enabled = False
+	
+	'Changes background color
+	hayEnergia = False
+	cambiarColor
+	
+	'Monitor current status
+	If lblTimer.Text = "0.0" Or lblTimer.Text = "" Then
+		'prende este timer
+		DisplayTimer(minDisconnect / 1000)
+		timerDisconnect.Initialize("timerDisconnect", minDisconnect)
+		timerDisconnect.Enabled = True
+	Else
+		lblTimer.Text = ""
+	End If
+End Sub
+Sub timerDisconnect_Tick ' Disconnection timer tick
+	'Sends SMS
+	ToastMessageShow("Enviando SMS - Corte de luz...", False)
+	Dim numerosTel() As String = Regex.Split(",", telefonos)
+	For i = 0 To numerosTel.Length - 1
+		p.Send(numerosTel(i),"Power is out!")
+	Next
+	'Closes timer
+	timerDisconnect.Enabled = False
+End Sub
+#End Region
+#Region ConectionCheck
+Sub Conexion ' POWER COMES BACK
+	'Turns timers of
+	timerDisconnect.Enabled = False
+	timerDisplay.Enabled = False
+	
+	'Changes background color
+	hayEnergia = True
+	cambiarColor
+	
+	'Monitor current status
+	If lblTimer.Text = "0.0" Or lblTimer.Text = "" Then
+		'prende este timer
+		DisplayTimer(minConnect / 1000)
+		timerConnect.Initialize("timerConnect", minConnect)
+		timerConnect.Enabled = True
+	Else
+		lblTimer.Text = ""
+	End If
+	
+End Sub
+Sub timerConnect_Tick 'Connection timer tick
+	'Sends SMS when energy is back on
+	If hayEnergia = True Then
+		ToastMessageShow("Volvió la luz, enviando SMS...", False)
+		
+		Dim numerosTel() As String = Regex.Split(",", telefonos)
+		For i = 0 To numerosTel.Length - 1
+			p.Send(numerosTel(i),"Energy restored!")
+		Next
+	End If
+	'Closes timer
+	timerConnect.Enabled = False
+End Sub
+Sub DisplayTimer (tiempoTotal As Int) 'Display timers
+	lblTimer.Text = tiempoTotal
+	timerDisplay.Initialize("timerDisplay", 1000)
+	timerDisplay.Enabled = True
+End Sub
+Sub timerDisplay_Tick 'Timer ticks
+	If lblTimer.Text > 0 Then
+		lblTimer.Text = lblTimer.Text - 1
+	Else
+		timerDisplay.Enabled = False
+	End If
+End Sub
+Sub cambiarColor 'Changes background colors
+	If hayEnergia = True Then
+		pnlFondo.Color = Colors.RGB(0,114,0) 'Green (power connected)
+	Else
+		pnlFondo.Color = Colors.RGB(114,0,0) 'Red (power disconnected)
+	End If
+End Sub
+
+#End Region
+
+
+Sub btnMonitorOn_Click 'BUTTON TURNS POWER MONITOR ON/OFF
+	If txtTelefonos.Text = "" Then
+		ToastMessageShow("No hay números configurados... cancelando monitor", False)
+		Return
+	End If
+	btnSaveConfig_Click
+	
+	If monitorOn = False Then
+		cambiarColor 'Changes color
+		monitorOn = True
+		ToastMessageShow("Monitor prendido", False)
+		lblMonitorOn.Text = "Monitor PRENDIDO"
+		btnMonitorOn.Text = "APAGADO"
+		txtTelefonos.Enabled = False
+		txtMinConnect.Enabled = False
+		txtMinDisconnect.Enabled = False
+		btnSaveConfig.Enabled = False
+	Else
+		monitorOn = False
+		ToastMessageShow("Monitor apagado", False)
+		lblMonitorOn.Text = "Monitor APAGADO"
+		btnMonitorOn.Text = "PRENDIDO"
+		lblTimer.Text = ""
+		pnlFondo.Color = Colors.RGB(72,72,72)
+		timerDisplay.Enabled = False
+		timerConnect.Enabled = False
+		timerDisconnect. Enabled = False
+		txtTelefonos.Enabled = True
+		txtMinConnect.Enabled = True
+		txtMinDisconnect.Enabled = True
+		btnSaveConfig.Enabled = True
+	End If
+
+End Sub
+
+
+
+Private Sub btnExit_Click
+	Msgbox2Async("Seguro que querés salir, se apagará el monitor?", "Apagar?", "Si, apagar!", "No, dejar el monitor andando", "", Null, False)
+	Wait For Msgbox_Result(Result As Int)
+	
+	If Result =  DialogResponse.POSITIVE Then
+		Activity.Finish
+		ExitApplication
+	Else
+		Return
+	End If
+	
+	
+	
+End Sub
