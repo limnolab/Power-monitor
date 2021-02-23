@@ -137,40 +137,50 @@ return false;
 public static String  _cargarconfig() throws Exception{
 anywheresoftware.b4a.objects.collections.Map _map1 = null;
  //BA.debugLineNum = 30;BA.debugLine="Sub CargarConfig";
- //BA.debugLineNum = 31;BA.debugLine="If File.Exists(File.DirInternal, \"settings.txt\")";
+ //BA.debugLineNum = 32;BA.debugLine="If File.Exists(File.DirInternal, \"settings.txt\")";
 if (anywheresoftware.b4a.keywords.Common.File.Exists(anywheresoftware.b4a.keywords.Common.File.getDirInternal(),"settings.txt")==anywheresoftware.b4a.keywords.Common.True) { 
- //BA.debugLineNum = 32;BA.debugLine="Dim Map1 As Map";
+ //BA.debugLineNum = 33;BA.debugLine="Dim Map1 As Map";
 _map1 = new anywheresoftware.b4a.objects.collections.Map();
- //BA.debugLineNum = 33;BA.debugLine="Map1 = File.ReadMap(File.DirInternal, \"settings.";
+ //BA.debugLineNum = 34;BA.debugLine="Map1 = File.ReadMap(File.DirInternal, \"settings.";
 _map1 = anywheresoftware.b4a.keywords.Common.File.ReadMap(anywheresoftware.b4a.keywords.Common.File.getDirInternal(),"settings.txt");
- //BA.debugLineNum = 34;BA.debugLine="Main.telefonos = Map1.Get(\"telefonos\")";
+ //BA.debugLineNum = 35;BA.debugLine="Main.telefonos = Map1.Get(\"telefonos\")";
 mostCurrent._main._telefonos /*String*/  = BA.ObjectToString(_map1.Get((Object)("telefonos")));
- //BA.debugLineNum = 35;BA.debugLine="Main.minDisconnect = Map1.Get(\"minDisconnect\") *";
+ //BA.debugLineNum = 36;BA.debugLine="Main.minDisconnect = Map1.Get(\"minDisconnect\") *";
 mostCurrent._main._mindisconnect /*int*/  = (int) ((double)(BA.ObjectToNumber(_map1.Get((Object)("minDisconnect"))))*1000);
- //BA.debugLineNum = 36;BA.debugLine="Main.minConnect = Map1.Get(\"minConnect\") * 1000";
+ //BA.debugLineNum = 37;BA.debugLine="Main.minConnect = Map1.Get(\"minConnect\") * 1000";
 mostCurrent._main._minconnect /*int*/  = (int) ((double)(BA.ObjectToNumber(_map1.Get((Object)("minConnect"))))*1000);
- //BA.debugLineNum = 38;BA.debugLine="If Main.telefonos = \"\" Then";
+ //BA.debugLineNum = 39;BA.debugLine="If Main.telefonos = \"\" Then";
 if ((mostCurrent._main._telefonos /*String*/ ).equals("")) { 
- //BA.debugLineNum = 39;BA.debugLine="Main.telefonos = \"\"";
+ //BA.debugLineNum = 40;BA.debugLine="Main.telefonos = \"\"";
 mostCurrent._main._telefonos /*String*/  = "";
  };
- //BA.debugLineNum = 41;BA.debugLine="If Main.minConnect = 0 Then";
+ //BA.debugLineNum = 42;BA.debugLine="If Main.minConnect = 0 Then";
 if (mostCurrent._main._minconnect /*int*/ ==0) { 
- //BA.debugLineNum = 42;BA.debugLine="Main.minConnect = 600";
-mostCurrent._main._minconnect /*int*/  = (int) (600);
+ //BA.debugLineNum = 43;BA.debugLine="Main.minConnect = 6000";
+mostCurrent._main._minconnect /*int*/  = (int) (6000);
  };
- //BA.debugLineNum = 44;BA.debugLine="If Main.minDisconnect = 0 Then";
+ //BA.debugLineNum = 45;BA.debugLine="If Main.minDisconnect = 0 Then";
 if (mostCurrent._main._mindisconnect /*int*/ ==0) { 
- //BA.debugLineNum = 45;BA.debugLine="Main.minDisconnect = 600";
-mostCurrent._main._mindisconnect /*int*/  = (int) (600);
+ //BA.debugLineNum = 46;BA.debugLine="Main.minDisconnect = 6000";
+mostCurrent._main._mindisconnect /*int*/  = (int) (6000);
  };
  }else {
- //BA.debugLineNum = 49;BA.debugLine="Main.minDisconnect = 600";
-mostCurrent._main._mindisconnect /*int*/  = (int) (600);
- //BA.debugLineNum = 50;BA.debugLine="Main.minConnect = 600";
-mostCurrent._main._minconnect /*int*/  = (int) (600);
+ //BA.debugLineNum = 49;BA.debugLine="Dim Map1 As Map";
+_map1 = new anywheresoftware.b4a.objects.collections.Map();
+ //BA.debugLineNum = 50;BA.debugLine="Map1 = File.ReadMap(File.DirAssets, \"settings.tx";
+_map1 = anywheresoftware.b4a.keywords.Common.File.ReadMap(anywheresoftware.b4a.keywords.Common.File.getDirAssets(),"settings.txt");
+ //BA.debugLineNum = 51;BA.debugLine="Main.telefonos = Map1.Get(\"telefonos\")";
+mostCurrent._main._telefonos /*String*/  = BA.ObjectToString(_map1.Get((Object)("telefonos")));
+ //BA.debugLineNum = 52;BA.debugLine="Main.minDisconnect = Map1.Get(\"minDisconnect\") *";
+mostCurrent._main._mindisconnect /*int*/  = (int) ((double)(BA.ObjectToNumber(_map1.Get((Object)("minDisconnect"))))*1000);
+ //BA.debugLineNum = 53;BA.debugLine="Main.minConnect = Map1.Get(\"minConnect\") * 1000";
+mostCurrent._main._minconnect /*int*/  = (int) ((double)(BA.ObjectToNumber(_map1.Get((Object)("minConnect"))))*1000);
+ //BA.debugLineNum = 56;BA.debugLine="Main.minDisconnect = 6000";
+mostCurrent._main._mindisconnect /*int*/  = (int) (6000);
+ //BA.debugLineNum = 57;BA.debugLine="Main.minConnect = 6000";
+mostCurrent._main._minconnect /*int*/  = (int) (6000);
  };
- //BA.debugLineNum = 52;BA.debugLine="End Sub";
+ //BA.debugLineNum = 59;BA.debugLine="End Sub";
 return "";
 }
 public static String  _process_globals() throws Exception{

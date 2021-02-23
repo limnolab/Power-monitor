@@ -5,19 +5,15 @@ FileGroup1=Default Group
 FileGroup2=Default Group
 Group=Default Group
 Library1=core
-Library2=javaobject
-Library3=network
-Library4=phone
-Library5=randomaccessfile
-Library6=reflection
-Library7=runtimepermissions
+Library2=phone
+Library3=runtimepermissions
 ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: https://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="5" android:targetSdkVersion="26"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~CreateResourceFromFile(Macro, Themes.DarkTheme)~\n~'End of default text.~\n~~\n~AddPermission(android.permission.READ_PHONE_STATE)~\n~
 Module1=Starter
 Module2=Tracker_Energia
 NumberOfFiles=2
-NumberOfLibraries=7
+NumberOfLibraries=3
 NumberOfModules=2
-Version=10.5
+Version=10.6
 @EndOfDesignText@
 #Region  Project Attributes 
 	#ApplicationLabel: Monitor de Energía

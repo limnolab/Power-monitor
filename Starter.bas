@@ -34,6 +34,7 @@ Sub Service_Destroy
 End Sub
 
 Sub CargarConfig
+	
 	If File.Exists(File.DirInternal, "settings.txt") = True Then
 		Dim Map1 As Map
 		Map1 = File.ReadMap(File.DirInternal, "settings.txt")
@@ -45,14 +46,20 @@ Sub CargarConfig
 			Main.telefonos = ""
 		End If
 		If Main.minConnect = 0 Then
-			Main.minConnect = 600
+			Main.minConnect = 6000
 		End If
 		If Main.minDisconnect = 0 Then
-			Main.minDisconnect = 600
+			Main.minDisconnect = 6000
 		End If
 	Else
-		'Default values (10 minutes)
-		Main.minDisconnect = 600
-		Main.minConnect = 600
+		Dim Map1 As Map
+		Map1 = File.ReadMap(File.DirAssets, "settings.txt")
+		Main.telefonos = Map1.Get("telefonos")
+		Main.minDisconnect = Map1.Get("minDisconnect") * 1000 'converts seconds to milliseconds
+		Main.minConnect = Map1.Get("minConnect") * 1000 'converts seconds to milliseconds
+		
+		'Default values (6 secs)
+		Main.minDisconnect = 6000
+		Main.minConnect = 6000
 	End If
 End Sub

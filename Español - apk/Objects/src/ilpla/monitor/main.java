@@ -471,7 +471,7 @@ this.state = 10;
  //BA.debugLineNum = 67;BA.debugLine="ToastMessageShow(\"Faltan permisos\", False)";
 anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence("Faltan permisos"),anywheresoftware.b4a.keywords.Common.False);
  //BA.debugLineNum = 68;BA.debugLine="Log(\"No Permission: \" & Permission)";
-anywheresoftware.b4a.keywords.Common.LogImpl("6131082","No Permission: "+_permission,0);
+anywheresoftware.b4a.keywords.Common.LogImpl("5131082","No Permission: "+_permission,0);
  //BA.debugLineNum = 69;BA.debugLine="ExitApplication";
 anywheresoftware.b4a.keywords.Common.ExitApplication();
  if (true) break;
@@ -488,7 +488,7 @@ case 11:
 this.state = 12;
 ;
  //BA.debugLineNum = 73;BA.debugLine="Log(\"All permissions OK\")";
-anywheresoftware.b4a.keywords.Common.LogImpl("6131087","All permissions OK",0);
+anywheresoftware.b4a.keywords.Common.LogImpl("5131087","All permissions OK",0);
  if (true) break;
 ;
  //BA.debugLineNum = 75;BA.debugLine="If FirstTime Then";
